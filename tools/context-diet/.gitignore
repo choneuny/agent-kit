@@ -1,0 +1,9 @@
+__pycache__/
+.venv/
+ui/node_modules/
+ui/dist/
+
+data/*
+!data/.gitkeep
+!data/README.md
+!data/calibration.json

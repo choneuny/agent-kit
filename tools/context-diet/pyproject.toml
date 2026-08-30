@@ -1,0 +1,9 @@
+[project]
+name = "context-diet"
+version = "0.1.0"
+description = "Inventory and token-estimate what an agent harness loads into every session"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.uv]
+package = false

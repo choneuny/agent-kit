@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>explain-with-pictures — 설명을 그림 한 장으로</title>
+<title>설명을 그림 한 장으로 내놓게 하는 규칙</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
 :root{
@@ -42,11 +42,11 @@ nav.back a:hover{text-decoration:underline}
 <body>
 <div class="wrap">
 <header class="top">
-  <p class="kicker">explain-with-pictures</p>
+  <p class="kicker">개념 지도 08</p>
   <h1>설명을 그림 한 장으로<br>내놓게 하는 규칙</h1>
-  <p class="lede">에이전트에게 「이거 좀 설명해 줘」라고 하면 대개 긴 글이 옵니다.
-  이 스킬을 얹으면 <strong>그림 한 장이 있는 페이지</strong>가 대신 옵니다.
-  규칙은 열두 줄, 파일 하나가 전부예요.</p>
+  <p class="lede">앞 장에서 그림으로 주고받는 편이 낫다는 이야기를 했어요.
+  그런데 매번 「그림도 같이 그려 줘」라고 말해야 한다면 금방 안 하게 됩니다.
+  규칙 한 파일을 에이전트가 읽는 자리에 두면 <strong>기본이 그림 있는 페이지</strong>가 돼요.</p>
 </header>
 
 <h2>무엇이 오가나</h2>
@@ -78,8 +78,8 @@ nav.back a:hover{text-decoration:underline}
 
   <rect x="420" y="105" width="180" height="160" rx="14" fill="#FFFFFF" stroke="#15151A" stroke-width="3"/>
   <text x="510" y="172" font-size="22" font-weight="900" fill="#15151A" text-anchor="middle">스킬</text>
-  <text x="510" y="202" font-size="15" fill="#55555F" text-anchor="middle">그림 아홉 줄</text>
-  <text x="510" y="224" font-size="15" fill="#55555F" text-anchor="middle">글 다섯 줄</text>
+  <text x="510" y="202" font-size="15" fill="#55555F" text-anchor="middle">그림 규칙</text>
+  <text x="510" y="224" font-size="15" fill="#55555F" text-anchor="middle">글 규칙</text>
 
   <path d="M600,185 H694" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#as)"/>
 
@@ -99,7 +99,16 @@ nav.back a:hover{text-decoration:underline}
   <text x="618" y="432" font-size="15" font-weight="700" fill="#C77A05">어긋난 곳 하나만 말하면 다시 그린다</text>
 </svg>
 </div>
-<p class="cap">사람이 그리는 법을 알 필요는 없어요. 규칙은 스킬이 들고 있고, 무엇이 어긋났는지는 사람만 압니다.</p>
+<p class="cap">점선이 사람이 짚은 것을 다시 그림으로 보내는 길입니다.</p>
+
+<h2>산출은 파일 하나</h2>
+<p>나오는 것은 HTML 한 장이에요. 그림은 파일 안에 그려져 있고 바깥에서 가져오는 것은 웹폰트뿐입니다.</p>
+<p>그림은 한 장에 한 가지만 담습니다. 구조를 보일 것인지 순서를 보일 것인지 먼저 정하고,
+둘 다 필요하면 그림을 나눠요. 되돌아오는 흐름은 점선으로 갈라 두고,
+선은 직교로 그어 남의 상자를 지나가지 않게 합니다.</p>
+<p>가장 중요한 규칙은 이거예요. <strong>이름과 라벨은 문서나 코드에 있는 것만 씁니다.</strong>
+근거가 없으면 그리지 않거나 「(추정)」이라고 적어요. 그림이 그럴듯할수록 사람은 그걸 사실로 읽거든요.</p>
+<p>마지막은 사람 손을 거칩니다. 그린 것을 열어 겹침과 잘림과 화살표 방향을 눈으로 보고 고친 뒤에 끝내요.</p>
 
 <h2>사람이 보는 네 가지</h2>
 <div class="grid">
@@ -121,55 +130,20 @@ nav.back a:hover{text-decoration:underline}
   </div>
 </div>
 
-<h2>왜 이렇게 짧은가</h2>
-<p>규칙이 짧은 건 게을러서가 아니라 <strong>재 봤더니 짧은 쪽이 이겼기 때문</strong>이에요.
-같은 그림 과제를 세 프로젝트에 대해 다섯 가지 지침으로 각각 그리게 하고, 모두 열다섯 번을 같은 조건에서 돌렸습니다.</p>
-
-<div class="fig">
-<svg viewBox="0 0 1000 330" role="img" aria-label="지침의 토큰 수를 막대로 비교한 그림. 가장 작은 것이 판정에서 1위였다">
-  <line x1="40" y1="252" x2="960" y2="252" stroke="#C9C7C0" stroke-width="2"/>
-  <text x="40" y="34" font-size="17" font-weight="900" fill="#55555F">지침의 토큰 수 — 막대가 클수록 매번 더 많이 실린다</text>
-
-  <rect x="70" y="62" width="140" height="190" rx="4" fill="#D8D6CF"/>
-  <text x="140" y="52" font-size="16" font-weight="900" fill="#55555F" text-anchor="middle">20,400</text>
-  <rect x="250" y="169" width="140" height="83" rx="4" fill="#D8D6CF"/>
-  <text x="320" y="159" font-size="16" font-weight="900" fill="#55555F" text-anchor="middle">8,900</text>
-  <rect x="430" y="231" width="140" height="21" rx="4" fill="#D8D6CF"/>
-  <text x="500" y="221" font-size="16" font-weight="900" fill="#55555F" text-anchor="middle">2,300</text>
-  <rect x="610" y="243" width="140" height="9" rx="4" fill="#0B7A5A"/>
-  <text x="680" y="233" font-size="16" font-weight="900" fill="#0B7A5A" text-anchor="middle">640</text>
-  <rect x="790" y="249" width="140" height="3" rx="1" fill="#8A8A93"/>
-  <text x="860" y="239" font-size="16" font-weight="900" fill="#55555F" text-anchor="middle">0</text>
-
-  <text x="140" y="278" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">시중 스킬</text>
-  <text x="320" y="278" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">그 경량판</text>
-  <text x="500" y="278" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">압축판</text>
-  <text x="680" y="278" font-size="15" font-weight="900" fill="#0B7A5A" text-anchor="middle">이 스킬의 원형</text>
-  <text x="860" y="278" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">지침 없음</text>
-
-  <text x="140" y="304" font-size="14" fill="#B3391F" text-anchor="middle">판정 바닥</text>
-  <text x="320" y="304" font-size="14" fill="#B3391F" text-anchor="middle">판정 바닥</text>
-  <text x="680" y="304" font-size="14" font-weight="900" fill="#0B7A5A" text-anchor="middle">세 표본 모두 1위</text>
-</svg>
-</div>
-<p class="cap">순위를 적지 않은 둘은 중간이었습니다. 표본이 셋뿐이라 순서까지 못 박을 수는 없어요.</p>
-
-<p>무거운 지침이 진 이유는 분명했어요. 좌표를 손으로 계산하게 시키니 한글 라벨이 상자를 넘쳤고,
-글자 크기를 픽셀로 못 박아 두니 축소하면 안 읽혔고, 화살표 개수 상한이 정보를 깎았습니다.
-<strong>그래서 이 스킬에는 수치가 없습니다.</strong> 원칙만 두고 값은 그림마다 다시 고르게 해요.</p>
-
 <h2>얹는 법</h2>
 <p>파일 하나를 에이전트가 읽는 자리에 두면 끝이에요. Claude Code는 <code>~/.claude/skills/</code>,
-Codex는 <code>~/.codex/skills/</code> 아래에 폴더째 놓습니다. 그 밖의 도구라면 프로젝트 안내문에서 이 파일을 가리키면 돼요.</p>
-<p>한국어로 쓸 거라면 문장을 다듬는 스킬을 뒤에 하나 더 두는 편이 좋습니다.
+Codex는 <code>~/.codex/skills/</code> 아래에 폴더째 놓습니다.
+그 밖의 도구라면 프로젝트 안내문에서 이 파일을 가리키면 돼요.</p>
+<p>한국어로 쓸 거라면 <a href="06-writing.html">문체 규칙</a>을 뒤에 하나 더 두는 편이 좋습니다.
 이 스킬은 무엇을 그리고 무엇을 쓸지를 정하고, 문장을 고르는 일은 그쪽 몫이에요.</p>
 
 <div class="note">
 <p><strong>기억해 둘 한 줄.</strong> 그림은 예쁘게 보이려고 그리는 게 아니라
-<em>어긋난 곳을 빨리 찾으려고</em> 그려요. 규칙을 늘리면 그림이 좋아질 것 같지만, 재 봤더니 반대였습니다.</p>
+<em>어긋난 곳을 빨리 찾으려고</em> 그려요. 그래서 부품이 둘뿐이거나 한 번 쓰고 버릴 이야기면 그리지 않고,
+낡은 그림은 고치거나 버립니다. 틀린 그림은 그림이 없는 것보다 나빠요.</p>
 </div>
 
-<nav class="back"><a href="https://github.com/choneuny/agent-kit">저장소로 →</a></nav>
+<nav class="back"><a href="./">← 개념 지도 목록으로</a></nav>
 </div>
 </body>
 </html>

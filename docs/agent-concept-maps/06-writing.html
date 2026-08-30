@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>에이전트가 쓴 글은 왜 티가 나나</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+:root{
+  --bg:#FBFAF7; --card:#FFFFFF; --ink:#15151A; --mid:#55555F; --dim:#8A8A93;
+  --line:#E6E4DD; --blue:#2F5FE0; --blue-s:#EAF0FF; --violet:#7A3FD4; --violet-s:#F3ECFF;
+  --amber:#C77A05; --amber-s:#FFF3DE; --green:#0B7A5A; --green-s:#E3F5EE; --gray-s:#EDEDEA;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px 120px}
+header.top{padding:72px 0 40px;border-bottom:1px solid var(--line);margin-bottom:56px}
+.kicker{font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--blue);margin:0 0 14px}
+h1{font-size:clamp(34px,5.4vw,52px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin:0 0 18px}
+.lede{font-size:20px;color:var(--mid);margin:0;max-width:60ch;line-height:1.7}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:900;letter-spacing:-.015em;margin:72px 0 14px}
+h3{font-size:19px;font-weight:700;margin:36px 0 8px}
+p{margin:0 0 18px;max-width:64ch}
+strong{font-weight:700}
+.fig{margin:32px 0 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;min-width:720px}
+.cap{font-size:15px;color:var(--dim);margin:0 0 40px;max-width:64ch}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amber);
+  border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+.note p:last-child{margin-bottom:0}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:28px 0}
+.cell{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.cell h4{margin:0 0 8px;font-size:17px;font-weight:700}
+.cell p{margin:0;font-size:16px;color:var(--mid);line-height:1.7}
+nav.back{margin:64px 0 0;padding-top:28px;border-top:1px solid var(--line);font-size:16px}
+nav.back a{color:var(--blue);font-weight:700;text-decoration:none}
+nav.back a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <p class="kicker">개념 지도 06</p>
+  <h1>에이전트가 쓴 글은<br>왜 티가 나나</h1>
+  <p class="lede">내용은 맞는데 읽으면 사람이 쓴 것 같지 않은 글이 있어요.
+  그 차이는 지식이 아니라 <strong>문장 습관</strong>에서 옵니다.
+  습관 몇 가지를 금지 목록으로 적어 주면 같은 내용이 다른 글이 돼요.</p>
+</header>
+
+<h2>내용이 아니라 문장이 문제다</h2>
+<p>에이전트에게 한국어로 뭔가 써 달라고 하면 대개 영어 문장을 한국어 낱말로 갈아 끼운 글이 옵니다.
+「~에 대해 설명드리겠습니다」, 「높은 성능을 가지고 있습니다」 같은 문장이죠.
+틀린 말은 아닌데 한국 사람이 말할 때 쓰는 어순이 아니에요.</p>
+<p>이런 문장은 하나씩 보면 사소해 보여도 한 문서에 여남은 개가 모이면 읽는 사람이 곧바로 알아챕니다.
+그리고 그 글이 팀 문서나 공유 페이지에 올라가면, 에이전트가 쓴 티가 아니라
+<strong>그 글을 올린 사람의 글솜씨</strong>로 읽혀요.</p>
+
+<h2>같은 내용, 다른 문장</h2>
+<div class="fig">
+<svg viewBox="0 0 1000 420" role="img" aria-label="문체 규칙을 지나면 같은 내용의 문장이 어떻게 바뀌는지 보여주는 그림">
+  <defs>
+    <marker id="a6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#15151A"/>
+    </marker>
+  </defs>
+
+  <text x="24" y="40" font-size="16" font-weight="700" fill="#8A8A93">그냥 쓰게 두면</text>
+  <rect x="24" y="56" width="340" height="284" rx="12" fill="#FFFFFF" stroke="#C9C7C0" stroke-width="2"/>
+
+  <rect x="40" y="76" width="308" height="70" rx="8" fill="#FDE8E4" stroke="#B3391F" stroke-width="2"/>
+  <text x="60" y="106" font-size="17" fill="#15151A">이 기능에 대해</text>
+  <text x="60" y="130" font-size="17" fill="#15151A">설명드리겠습니다</text>
+
+  <rect x="40" y="162" width="308" height="70" rx="8" fill="#FDE8E4" stroke="#B3391F" stroke-width="2"/>
+  <text x="60" y="192" font-size="17" fill="#15151A">높은 성능을</text>
+  <text x="60" y="216" font-size="17" fill="#15151A">가지고 있습니다</text>
+
+  <rect x="40" y="248" width="308" height="70" rx="8" fill="#FDE8E4" stroke="#B3391F" stroke-width="2"/>
+  <text x="60" y="278" font-size="17" fill="#15151A">결론적으로, 이는</text>
+  <text x="60" y="302" font-size="17" fill="#15151A">주목할 만합니다</text>
+
+  <path d="M364,198 H404" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a6)"/>
+
+  <rect x="410" y="128" width="180" height="140" rx="14" fill="#FFFFFF" stroke="#15151A" stroke-width="3"/>
+  <text x="500" y="176" font-size="21" font-weight="900" fill="#15151A" text-anchor="middle">문체 규칙</text>
+  <text x="500" y="208" font-size="15" fill="#55555F" text-anchor="middle">해요체 하나</text>
+  <text x="500" y="232" font-size="15" fill="#55555F" text-anchor="middle">금지 목록 열 줄</text>
+
+  <path d="M590,198 H630" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a6)"/>
+
+  <text x="636" y="40" font-size="16" font-weight="700" fill="#0B7A5A">규칙을 얹으면</text>
+  <rect x="636" y="56" width="340" height="284" rx="12" fill="#FFFFFF" stroke="#0B7A5A" stroke-width="2"/>
+
+  <rect x="652" y="76" width="308" height="70" rx="8" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="672" y="118" font-size="17" fill="#15151A">이 기능을 설명할게요</text>
+
+  <rect x="652" y="162" width="308" height="70" rx="8" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="672" y="204" font-size="17" fill="#15151A">성능이 좋아요</text>
+
+  <rect x="652" y="248" width="308" height="70" rx="8" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="672" y="290" font-size="17" fill="#15151A">그래서 이렇게 정했어요</text>
+
+  <text x="500" y="386" font-size="16" font-weight="700" fill="#55555F" text-anchor="middle">바뀐 것은 문장뿐이고 내용은 그대로예요</text>
+</svg>
+</div>
+<h2>규칙은 두 가지만 잡는다</h2>
+
+<h3>하나. 문체를 하나로 정한다</h3>
+<p>해요체로 쓴다고 못 박아 둡니다. 「~합니다」가 좀 섞이는 것은 한국어에서 그대로 해요체라 괜찮아요.
+잡아야 하는 것은 섞임이 아니라 문장마다 규칙적으로 번갈아 나오는 기계적인 교대예요.
+코드 주석이나 커밋 메시지처럼 이미 관례가 있는 자리는 그 관례를 따릅니다.</p>
+
+<h3>둘. 한 번만 나와도 걸리는 것을 열거한다</h3>
+<p>사람이 안 쓰는 표현을 목록으로 적어 둬요. 번역투 직결(「~에 대해」, 「~를 통해」),
+have를 직역한 「가지고 있다」, 이중 피동 「~되어진다」, 「그/그녀」의 반복,
+「결론적으로」 같은 결산 상투어, 「~할 때다」로 닫는 결말, 연결어미 뒤에 찍는 쉼표.
+열 줄이면 충분합니다.</p>
+<p>목록으로 적는 편이 「자연스럽게 써 줘」보다 잘 먹혀요. 자연스러움은 사람마다 다르지만
+「이 표현을 쓰지 마라」는 어긋나면 바로 보이거든요.</p>
+
+<div class="note">
+<p>고유명사와 수치, 날짜, 직접 인용, 업계에서 영어로 쓰는 약어(API·LLM·GPU)는 그대로 둡니다.
+영어를 피하려고 없는 우리말을 지어내면 오히려 독자가 한 번 더 해석해야 해요.</p>
+</div>
+
+<h2>사람은 무엇을 보면 되나</h2>
+<p>문장을 하나하나 고치려 들 필요는 없어요. 읽으면서 <strong>내가 안 쓰는 말</strong>이 걸리는지만 보면 됩니다.
+걸리는 문장을 하나 짚어서 「이건 내가 쓰는 말이 아니에요」라고 돌려주면 나머지도 같이 고쳐져요.
+어떤 표현이 어색한지는 글을 읽는 사람만 알거든요.</p>
+
+<div class="note">
+<p><strong>기억해 둘 한 줄.</strong> AI 티는 내용이 아니라 문장 습관에서 나요.
+문체 하나와 금지 목록 열 줄이면 대부분 잡히고, 남는 것은 사람이 짚어 주면 됩니다.</p>
+</div>
+
+<nav class="back"><a href="./">← 개념 지도 목록으로</a></nav>
+</div>
+</body>
+</html>

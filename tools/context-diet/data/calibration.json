@@ -1,0 +1,7 @@
+{
+  "ascii_div": 2.1843782707036676,
+  "non_ascii_per_char": 1.3698187777052695,
+  "source": "context-measured:2026-08-24-claude-fable-5.md",
+  "measured_at": "2026-08-23T20:37:56.550858+00:00",
+  "note": "계수만 남긴 배포본. samples는 개인 환경 경로라 뺐다. 자기 환경에서 context_parse.py를 돌리면 덮어쓴다."
+}

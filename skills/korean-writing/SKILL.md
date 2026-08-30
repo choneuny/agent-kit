@@ -7,8 +7,6 @@ description: 한국어 문서·보고·README를 쓸 때 처음부터 적용하�
 # 한국어 글쓰기 원칙
 
 한국어 문서·초안·보고·번역에 처음부터 적용한다. 사후 윤문이 아니라 작성 시점 규율이다.
-2026-08-30 격리 실험(sonnet 10회 · opus 20회, `sketches/diagram-skill-eval/docs/log/2026-08-30-korean-writing-rule-experiment.md`)에서
-문체 한 단락과 아래 목록만으로 얻을 것을 다 얻었고, 절제 목록·예시·대체어 표는 이득 없이 부작용만 내서 뺐다.
 
 ## 문체
 
