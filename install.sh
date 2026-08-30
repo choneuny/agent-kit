@@ -32,7 +32,7 @@ CODEX_MATCHER="startup|resume|clear|compact"
 HOOK_TIMEOUT=5
 
 RULES="korean-writing docs-and-memory"
-SKILLS="agent-concept-maps explain-with-pictures docs-upkeep refresh"
+SKILLS="explain-with-pictures docs-upkeep refresh"
 
 MODE=install
 case "${1:-}" in

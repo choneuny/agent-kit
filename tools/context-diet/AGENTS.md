@@ -12,6 +12,7 @@
 | `guides/ui-terms.md` | 화면 문구를 쓰거나 고칠 때 |
 | `guides/annotations.md` | 사용자가 화면에 단 메모·선택·질문을 읽고 답할 때 |
 | `guides/disabling.md` | 판정을 실제로 실행할 때 — 되돌릴 수 있는 끄기 방법과 기록 |
+| `guides/decision-cards.md` | 판정 카드를 새로 짜거나 `scripts/cards.py`를 다른 환경에 맞게 고칠 때 |
 
 
 ## 절대 규칙

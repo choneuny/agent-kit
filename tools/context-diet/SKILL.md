@@ -36,6 +36,9 @@ uv run scripts/judge.py            # 항목 본문을 읽고 Keep / Improve / Up
 uv run scripts/decisions.py        # 판정과 쓰임을 합쳐 노드 패널 재료 → data/decisions.json
 ```
 
+카드 목록은 환경마다 다르다. 동봉된 `scripts/cards.py`는 유지자 환경에서 뽑은 예시라서,
+`decisions.py`를 돌리기 전에 `docs/guides/decision-cards.md`대로 자기 환경의 손잡이로 다시 쓴다.
+
 판정 절차와 결과 읽는 법은 `docs/guides/judging.md`. 판정은 재료이지 실행이 아니다.
 
 ## 펼쳐 보기
