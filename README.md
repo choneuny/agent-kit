@@ -3,7 +3,7 @@
 아무것도 모르는 독자에게 개념 하나를 설명하는 에이전트 스킬. 산출은 **자기완결 HTML 한 장**이다 —
 인라인 SVG로 그린 그림과 그 그림을 푸는 산문. 규칙은 [`SKILL.md`](SKILL.md) 한 장이 전부다.
 
-> 이 스킬이 무엇이고 왜 이렇게 짧은지는 [설명 페이지](docs/index.html)에 그림으로 적어 두었다.
+> 이 스킬이 무엇이고 왜 이렇게 짧은지는 [설명 페이지](https://choneuny.github.io/explain-with-pictures/)에 그림으로 적어 두었다.
 > 그 페이지 자체가 이 스킬로 만든 것이다.
 
 ## 왜 짧은가
@@ -46,3 +46,8 @@ ln -s "$PWD/explain-with-pictures" ~/.claude/skills/explain-with-pictures
 ## 라이선스
 
 MIT.
+
+## 정본
+
+규칙의 정본은 유지자의 `~/.agents/skills/explain-with-pictures/`이고 이 저장소는 거기서 낸 공개본이다.
+두 쪽을 고칠 일이 생기면 정본을 먼저 고친다.
