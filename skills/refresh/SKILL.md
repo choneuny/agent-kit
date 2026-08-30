@@ -122,7 +122,7 @@ mkdir -p ~/.agent-kit
   ```
   병렬 세션이 덮어쓸 수 있는 상태 파일은 쓰지 않는다. ndjson 파싱, system-reminder 추측도 금지
 - 스냅샷 주입은 SessionStart hook(`hooks/session-start.sh`)이 담당하며 이벤트 종류(startup/clear/compact)를 가리지 않음 — 파일이 64KB 이하·1시간 이내·동일 cwd 조건만 충족하면 `/clear`든 `/compact`든 동일하게 주입됨. 훅은 스냅샷 본문을 **stdout**으로 내보내고(SessionStart 훅의 stdout이 세션 컨텍스트로 들어간다), 주입 뒤 파일을 `refresh-snapshot.consumed`로 옮겨 두 번 들어가지 않게 한다
-- 훅이 걸리는 자리는 하네스마다 다르다. Claude Code는 `~/.claude/settings.json`의 `hooks.SessionStart`, Codex는 `~/.codex/hooks.json`의 같은 자리(matcher `startup|resume|clear|compact`)다. Codex는 `config.toml`의 `features.hooks`가 켜져 있어야 훅을 돌린다. 둘 다 `install.sh`가 걸어 준다
+- 훅이 걸리는 자리는 하네스마다 다르다. Claude Code는 `~/.claude/settings.json`의 `hooks.SessionStart`, Codex는 `~/.codex/hooks.json`의 같은 자리(matcher `startup|resume|clear|compact`)다. Codex는 `config.toml`의 `features.hooks`가 켜져 있어야 훅을 돌린다. 둘 다 저장소 루트의 `INSTALL.md` 절차가 걸어 준다. 훅 스크립트는 bash판 `hooks/session-start.sh`와 같은 일을 하는 PowerShell판 `hooks/session-start.ps1`이 있고, Windows에 Git Bash가 없으면 후자를 건다
 - `/clear`와 `/compact`의 차이는 컨텍스트 처리 방식(완전 비움 vs 요약 유지)임
 - 이 스냅샷은 즉시 resume용 경량 요약이며, 세션 전체 기록을 대체하지 않음
 - 상세 가이드(Step 1.5)는 자동 주입 대상이 아님 — 스냅샷의 링크를 통해서만 접근. 가이드 파일은 현재 프로젝트의 `.refresh-guides/`에 누적되며 자동 정리되지 않음 (필요 시 `.gitignore`에 추가 권장)
