@@ -316,7 +316,7 @@ def measure_hooks() -> dict[str, dict]:
             "chars": 0, "tokens": 0, "measured": False, "method": None,
             "reason": "스크립트도 트랜스크립트 기록도 못 찾았다"}
 
-    # 2. session-start-healthcheck.sh — appends to ndjson logs, mkdir/chmod, moves
+    # 2. the SessionStart health hook — appends to ndjson logs, mkdir/chmod, moves
     #    the refresh snapshot. Not read-only: measured off the transcript instead.
     tr = transcript_match("session-start-healthcheck")
     m["hook:SessionStart:healthcheck"] = (
@@ -327,8 +327,8 @@ def measure_hooks() -> dict[str, dict]:
          "reason": "로그 ndjson에 append·mkdir·chmod·스냅샷 이동이 있어 실행하지 않았고 트랜스크립트 기록도 없다"}
     )
 
-    # 3. session-end-save.sh (PreCompact + SessionEnd) — spawns headless `claude -p`,
-    #    writes journal files. Never run from here.
+    # 3. the PreCompact + SessionEnd hook — spawns a headless `claude -p` and writes
+    #    files of its own. Never run from here.
     m["hook:PreCompact+SessionEnd:session-end-save"] = {
         "chars": 0, "tokens": 0, "measured": False, "method": None,
         "reason": "claude -p 자식 세션을 띄우고 저널·로그 파일을 쓴다 — 실행 금지. "
@@ -502,10 +502,10 @@ def build_cards() -> list[dict]:
          "~/.local/share/pseudo-honcho/insights.jsonl (정제본)",
          "필요할 때 파일을 직접 읽는다"),
         ("hook:SessionStart:healthcheck",
-         "session-start-healthcheck.sh의 주입(훅 상태 배지 + /refresh 스냅샷)을 둘지",
+         "세션 시작 훅의 주입(훅 상태 배지 + /refresh 스냅샷)을 둘지",
          "~/.claude/scripts/session-start-healthcheck.sh", None),
         ("hook:PreCompact+SessionEnd:session-end-save",
-         "session-end-save.sh 등록 둘(PreCompact·SessionEnd)을 둘지",
+         "세션 종료·압축 훅 등록 둘(PreCompact·SessionEnd)을 둘지",
          "~/.claude/scripts/session-end-save.sh", None),
     ]
     for hid, title, path, repl in hook_cards:
@@ -570,16 +570,17 @@ def build_cards() -> list[dict]:
         if f"/{name}" in txt:
             line = next(l.strip() for l in txt.splitlines() if f"/{name}" in l)
             cmd_breaks.append(brk(
-                f"훅 session-end-save.sh가 /{name}을 부른다",
+                f"훅 {ses.name}이 /{name}을 부른다",
                 f"세션이 끝나거나 압축될 때 훅이 headless claude 세션을 띄워 /{name}을 돌린다 — "
                 f"사람이 부르는 명령이 아니다",
                 evidence=line[:200], target_id=f"command:{name}"))
     GREP_LOG.append({"label": "dir:command", "pattern": "/learn-eval|/save-session",
                      "files": 1, "hits": len(cmd_breaks)})
-    hc = read_text(HOME / ".claude/scripts/session-start-healthcheck.sh")
+    hc_path = HOME / ".claude/scripts/session-start-healthcheck.sh"
+    hc = read_text(hc_path)
     if "refresh-snapshot" in hc:
         cmd_breaks.append(brk(
-            "훅 session-start-healthcheck.sh가 /refresh 산출물을 읽는다",
+            f"훅 {hc_path.name}이 /refresh 산출물을 읽는다",
             "/refresh가 남긴 스냅샷 파일을 세션 시작 훅이 읽어 다음 세션에 주입한다 — "
             "명령을 빼면 그 인계가 끊긴다",
             evidence='REFRESH_FILE="$STATE_DIR/refresh-snapshot.md"',
