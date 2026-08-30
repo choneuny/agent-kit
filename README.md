@@ -14,6 +14,11 @@
 
 그래서 이 스킬에는 수치가 없다. 원칙만 있고 값은 그림마다 다시 고른다.
 
+## 같이 들어 있는 것 — `korean-writing/`
+
+한국어로 쓰는 에이전트에게 주는 글쓰기 규칙. 해요체 한 단락과 금지 목록 열 줄이 전부이고, 이것도 다섯 변주
+서른 번의 격리 실험으로 크기를 정했다. 설명과 설치는 [`korean-writing/README.md`](korean-writing/README.md).
+
 ## 쓰는 법
 
 에이전트가 읽을 수 있는 자리에 `explain-with-pictures/SKILL.md`를 둔다.
