@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>왜 그림으로 주고받아야 하나</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+:root{
+  --bg:#FBFAF7; --card:#FFFFFF; --ink:#15151A; --mid:#55555F; --dim:#8A8A93;
+  --line:#E6E4DD; --blue:#2F5FE0; --blue-s:#EAF0FF; --violet:#7A3FD4; --violet-s:#F3ECFF;
+  --amber:#C77A05; --amber-s:#FFF3DE; --green:#0B7A5A; --green-s:#E3F5EE; --gray-s:#EDEDEA;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px 120px}
+header.top{padding:72px 0 40px;border-bottom:1px solid var(--line);margin-bottom:56px}
+.kicker{font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--blue);margin:0 0 14px}
+h1{font-size:clamp(34px,5.4vw,52px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin:0 0 18px}
+.lede{font-size:20px;color:var(--mid);margin:0;max-width:60ch;line-height:1.7}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:900;letter-spacing:-.015em;margin:72px 0 14px}
+h3{font-size:19px;font-weight:700;margin:36px 0 8px}
+p{margin:0 0 18px;max-width:64ch}
+strong{font-weight:700}
+.fig{margin:32px 0 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;min-width:720px}
+.cap{font-size:15px;color:var(--dim);margin:0 0 40px;max-width:64ch}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amber);
+  border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+.note p:last-child{margin-bottom:0}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:28px 0}
+.cell{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.cell h4{margin:0 0 8px;font-size:17px;font-weight:700}
+.cell p{margin:0;font-size:16px;color:var(--mid);line-height:1.7}
+nav.back{margin:64px 0 0;padding-top:28px;border-top:1px solid var(--line);font-size:16px}
+nav.back a{color:var(--blue);font-weight:700;text-decoration:none}
+nav.back a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <p class="kicker">개념 지도 05</p>
+  <h1>왜 그림으로<br>주고받아야 하나</h1>
+  <p class="lede">말은 서로 다른 것을 떠올리고도 같은 말처럼 들려요.
+  그림은 그게 안 됩니다. <strong>틀린 곳이 눈에 보여요.</strong>
+  에이전트와 일할 때 그림이 특별히 중요한 이유가 여기 있습니다.</p>
+</header>
+
+<h2>같은 문장, 다른 그림</h2>
+<p>「사용자 정보를 저장한다」 한 줄을 두 사람에게 읽히면 이런 일이 생겨요.</p>
+<div class="fig">
+<svg viewBox="0 0 1000 360" role="img" aria-label="같은 문장을 읽고 두 사람이 서로 다른 구조를 떠올리는 그림">
+  <defs>
+    <marker id="a6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#15151A"/>
+    </marker>
+  </defs>
+
+  <rect x="310" y="20" width="380" height="64" rx="12" fill="#FFFFFF" stroke="#15151A" stroke-width="3"/>
+  <text x="500" y="60" font-size="21" font-weight="900" fill="#15151A" text-anchor="middle">「사용자 정보를 저장한다」</text>
+
+  <path d="M500,84 V120 H220 V150" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a6)"/>
+  <path d="M500,120 H770 V150" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a6)"/>
+
+  <rect x="40" y="156" width="360" height="150" rx="14" fill="#EAF0FF" stroke="#2F5FE0" stroke-width="2"/>
+  <rect x="70" y="200" width="120" height="60" rx="8" fill="#FFFFFF" stroke="#2F5FE0" stroke-width="2"/>
+  <text x="130" y="236" font-size="17" font-weight="700" fill="#15151A" text-anchor="middle">앱</text>
+  <path d="M190,230 H244" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a6)"/>
+  <rect x="250" y="200" width="120" height="60" rx="8" fill="#FFFFFF" stroke="#2F5FE0" stroke-width="2"/>
+  <text x="310" y="236" font-size="17" font-weight="700" fill="#15151A" text-anchor="middle">저장소</text>
+  <text x="220" y="290" font-size="16" font-weight="700" fill="#2F5FE0" text-anchor="middle">A가 떠올린 모습</text>
+
+  <rect x="580" y="156" width="380" height="150" rx="14" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="2"/>
+  <rect x="600" y="200" width="100" height="60" rx="8" fill="#FFFFFF" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="650" y="236" font-size="17" font-weight="700" fill="#15151A" text-anchor="middle">앱</text>
+  <path d="M700,230 H719" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a6)"/>
+  <rect x="725" y="200" width="100" height="60" rx="8" fill="#FFFFFF" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="775" y="236" font-size="17" font-weight="700" fill="#15151A" text-anchor="middle">서버</text>
+  <path d="M825,230 H844" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a6)"/>
+  <rect x="850" y="200" width="95" height="60" rx="8" fill="#FFFFFF" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="897" y="236" font-size="16" font-weight="700" fill="#15151A" text-anchor="middle">저장소</text>
+  <text x="770" y="290" font-size="16" font-weight="700" fill="#0B7A5A" text-anchor="middle">B가 떠올린 모습</text>
+</svg>
+</div>
+<p class="cap">문장은 하나인데 구조가 둘이에요. 말로만 주고받으면 이 차이가 안 드러나요.</p>
+
+<p>둘은 서로 합의했다고 믿은 채로 각자 다른 것을 만들기 시작해요. 그리고 그 차이는 한참 뒤에,
+만든 것을 붙여 볼 때 드러납니다. 앞 지도에서 본 「늦게 잡을수록 비싸다」가 바로 이런 자리예요.</p>
+<p>그림을 한 장 그리면 이게 삼십 초 만에 끝나요. 화살표 하나를 손가락으로 짚으면 되니까요.</p>
+
+<h2>그림은 이해를 되돌려 주는 가장 싼 방법</h2>
+<p>에이전트에게 무언가를 시켰을 때 가장 알고 싶은 건 <strong>내 말을 어떻게 알아들었는가</strong>예요.
+그런데 이걸 말로 되돌려 받으면 문제가 하나 있습니다. 설명이 유창할수록 맞는 것처럼 들려요.
+틀린 이해도 문장으로 쓰면 그럴듯합니다.</p>
+<p>그림은 그게 어려워요. 상자가 하나 빠져 있으면 빈 자리가 보이고 화살표가 거꾸로면 거꾸로인 게 보입니다.
+<strong>숨을 곳이 없어요.</strong></p>
+
+<h2>그래서 이런 식으로 오가게 됩니다</h2>
+<div class="fig">
+<svg viewBox="0 0 1000 640" role="img" aria-label="사람과 에이전트가 그림 한 장을 두고 여섯 번 오가는 흐름">
+  <defs>
+    <marker id="a7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#15151A"/>
+    </marker>
+    <marker id="a7v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#C77A05"/>
+    </marker>
+  </defs>
+
+  <rect x="200" y="40" width="560" height="76" rx="12" fill="#EAF0FF" stroke="#2F5FE0" stroke-width="2"/>
+  <text x="222" y="72" font-size="14" font-weight="700" fill="#2F5FE0">사람</text>
+  <text x="222" y="100" font-size="19" font-weight="900" fill="#15151A">「이런 걸 만들고 싶어요」</text>
+
+  <path d="M480,116 V130" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a7)"/>
+
+  <rect x="200" y="136" width="560" height="76" rx="12" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="222" y="168" font-size="14" font-weight="700" fill="#0B7A5A">에이전트</text>
+  <text x="222" y="196" font-size="19" font-weight="900" fill="#15151A">「제가 이해한 건 이겁니다」 — 그림 한 장</text>
+
+  <path d="M480,212 V226" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a7)"/>
+
+  <rect x="200" y="232" width="560" height="76" rx="12" fill="#EAF0FF" stroke="#2F5FE0" stroke-width="2"/>
+  <text x="222" y="264" font-size="14" font-weight="700" fill="#2F5FE0">사람</text>
+  <text x="222" y="292" font-size="19" font-weight="900" fill="#15151A">「이 화살표가 거꾸로예요」</text>
+
+  <path d="M480,308 V322" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a7)"/>
+
+  <rect x="200" y="328" width="560" height="76" rx="12" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="222" y="360" font-size="14" font-weight="700" fill="#0B7A5A">에이전트</text>
+  <text x="222" y="388" font-size="19" font-weight="900" fill="#15151A">고쳐 그린다</text>
+
+  <path d="M480,404 V418" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a7)"/>
+
+  <rect x="200" y="424" width="560" height="76" rx="12" fill="#EAF0FF" stroke="#2F5FE0" stroke-width="2"/>
+  <text x="222" y="456" font-size="14" font-weight="700" fill="#2F5FE0">사람</text>
+  <text x="222" y="484" font-size="19" font-weight="900" fill="#15151A">「이제 맞아요」</text>
+
+  <path d="M480,500 V514" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a7)"/>
+
+  <rect x="200" y="520" width="560" height="76" rx="12" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="3"/>
+  <text x="222" y="552" font-size="14" font-weight="700" fill="#0B7A5A">에이전트</text>
+  <text x="222" y="580" font-size="19" font-weight="900" fill="#15151A">이제야 만들기 시작한다</text>
+
+  <path d="M760,366 H870 V174 H766" stroke="#C77A05" stroke-width="3" fill="none"
+        stroke-dasharray="9 7" marker-end="url(#a7v)"/>
+  <text x="884" y="262" font-size="15" font-weight="700" fill="#C77A05">맞을 때까지</text>
+  <text x="884" y="284" font-size="15" font-weight="700" fill="#C77A05">이 사이를</text>
+  <text x="884" y="306" font-size="15" font-weight="700" fill="#C77A05">오간다</text>
+</svg>
+</div>
+<p class="cap">여섯 걸음 가운데 다섯이 만들기 전에 일어나요. 느려 보이지만 실제로는 이쪽이 빨라요.</p>
+
+<h2>그리는 법은 안 배워도 됩니다</h2>
+<p>여기서 마음이 놓이는 이야기를 하나 할게요. <strong>어떻게 그릴지는 에이전트 쪽이 이미 알고 있어요.</strong>
+상자를 어떻게 놓고 화살표를 어디에 붙이고 글자를 얼마나 크게 할지 같은 규칙은 스킬로 들어가 있습니다.
+한국어 문장을 다듬는 규칙도 마찬가지고요. 그러니 「그려 줘」 한마디면 됩니다.</p>
+<p>내 몫으로 남는 건 둘이에요. <strong>언제 부를지</strong>, 그리고 <strong>받은 그림에서 무엇을 짚을지</strong>.</p>
+
+<h2>받은 그림에서 무엇을 짚나</h2>
+<p>그림이 오면 예쁜지를 보지 말고 네 가지를 봅니다.</p>
+<div class="grid">
+  <div class="cell">
+    <h4>상자 이름이 내 말인가</h4>
+    <p>내가 안 쓰는 낱말이 상자에 적혀 있으면, 에이전트가 다른 세계의 물건을 그린 거예요.
+    이름부터 맞춰야 나머지가 맞습니다.</p>
+  </div>
+  <div class="cell">
+    <h4>화살표가 맞는 쪽을 보나</h4>
+    <p>무엇이 무엇을 부르는지, 무엇이 어디로 가는지. 여기서 어긋나는 일이 제일 잦아요.</p>
+  </div>
+  <div class="cell">
+    <h4>없는 것이 그려져 있지 않나</h4>
+    <p>그럴듯해 보이려고 채워 넣은 상자가 있는지 봅니다. 근거가 없는 자리는 그리지 않거나
+    추측이라고 적혀 있어야 해요.</p>
+  </div>
+  <div class="cell">
+    <h4>내가 아는 것 중 빠진 게 없나</h4>
+    <p>그림에 없는데 실제로는 있는 것. 이건 나만 알아볼 수 있어서, 그림을 받는 값의 절반이 여기 있어요.</p>
+  </div>
+</div>
+<p>네 가지 중 하나라도 걸리면 그 한 군데만 말하면 됩니다. 전부 다시 설명할 필요는 없어요.</p>
+
+<h2>언제 그림을 부를까</h2>
+<div class="grid">
+  <div class="cell">
+    <h4>부품이 셋 이상 얽힐 때</h4>
+    <p>둘 사이는 말로 됩니다. 셋을 넘어가면 무엇이 무엇을 부르는지가 말로는 안 잡혀요.</p>
+  </div>
+  <div class="cell">
+    <h4>길이 갈릴 때</h4>
+    <p>두 가지 방법 중에 고를 때, 각각을 그려 놓고 보면 어느 쪽이 복잡한지가 눈으로 보입니다.</p>
+  </div>
+  <div class="cell">
+    <h4>남에게 넘길 때</h4>
+    <p>내가 아는 걸 남이 모를 때. 문서 열 장보다 그림 한 장이 먼저 읽힙니다.</p>
+  </div>
+</div>
+
+<h3>반대로, 안 그려도 되는 때</h3>
+<p>부품이 둘뿐이거나, 한 번 쓰고 버릴 일이거나, 이미 서로 아는 이야기면 그림은 낭비예요.
+그림도 만드는 값이 들고 낡으면 오히려 헷갈리게 해요. <strong>틀린 그림은 그림이 없는 것보다 나빠요.</strong>
+그러니 그린 그림은 실제와 어긋나면 바로 고치거나 버립니다.</p>
+
+<div class="note">
+<p><strong>기억해 둘 한 줄.</strong> 그림은 예쁘게 보이려고 그리는 게 아니라
+<em>어긋난 곳을 빨리 찾으려고</em> 그려요. 그리는 법은 에이전트가 알고, 무엇이 어긋났는지는 내가 압니다.</p>
+</div>
+
+<nav class="back"><a href="./">← 개념 지도 목록으로</a></nav>
+</div>
+</body>
+</html>

@@ -1,58 +1,29 @@
-# explain-with-pictures
+# agent-kit
 
-아무것도 모르는 독자에게 개념 하나를 설명하는 에이전트 스킬. 산출은 **자기완결 HTML 한 장**이다 —
-인라인 SVG로 그린 그림과 그 그림을 푸는 산문. 규칙은 [`SKILL.md`](SKILL.md) 한 장이 전부다.
+코딩 에이전트를 배우고·이해하고·결정하는 사람으로 쓰기 위한 스킬 묶음. 스킬마다 `skills/<이름>/SKILL.md` 한 장이 규칙이고,
+그 옆 `README.md`가 왜 그 크기인지와 쓰는 법을 적는다. 크기는 전부 같은 조건의 격리 실험으로 정했다 — 무거운 지침이
+번번이 졌다.
 
-> 이 스킬이 무엇이고 왜 이렇게 짧은지는 [설명 페이지](https://choneuny.github.io/explain-with-pictures/)에 그림으로 적어 두었다.
-> 그 페이지 자체가 이 스킬로 만든 것이다.
+| 스킬 | 무엇 | 바로 보기 |
+|---|---|---|
+| [`explain-with-pictures`](skills/explain-with-pictures/) | 아무것도 모르는 독자에게 개념 하나를 그림 한 장이 있는 자기완결 HTML로 설명한다 | [설명 페이지](https://choneuny.github.io/agent-kit/explain-with-pictures/) |
+| [`korean-writing`](skills/korean-writing/) | 한국어 문서·보고·README의 문체(해요체)와 AI 티 금지 목록. 상시 규칙으로 두는 쪽이 맞다 | — |
+| [`agent-concept-maps`](skills/agent-concept-maps/) | 처음 쓰는 사람을 위한 개념 지도 다섯 장(교재)과 펼치기·설명받기·더 만들기·재사용법 | [지도 차례](https://choneuny.github.io/agent-kit/agent-concept-maps/) |
 
-## 왜 짧은가
+## 설치
 
-시중 다이어그램 스킬(2만 토큰대)과 지침 없는 판을 포함해 다섯 변주를 같은 조건에서
-열다섯 번 돌려 봤다. 결과는 **가장 짧은 원칙 묶음이 세 표본 모두 1위**였고, 픽셀 크기와 서체를
-지정한 무거운 규칙이 바닥이었다. 좌표를 손으로 계산시키면 한글이 깨지고, 라벨 상한이 정보를 깎았다.
-
-그래서 이 스킬에는 수치가 없다. 원칙만 있고 값은 그림마다 다시 고른다.
-
-## 같이 들어 있는 것 — `korean-writing/`
-
-한국어로 쓰는 에이전트에게 주는 글쓰기 규칙. 해요체 한 단락과 금지 목록 열 줄이 전부이고, 이것도 다섯 변주
-서른 번의 격리 실험으로 크기를 정했다. 설명과 설치는 [`korean-writing/README.md`](korean-writing/README.md).
-
-## 쓰는 법
-
-에이전트가 읽을 수 있는 자리에 `explain-with-pictures/SKILL.md`를 둔다.
-
-- **Claude Code** — `~/.claude/skills/explain-with-pictures/`
-- **Codex** — `~/.codex/skills/explain-with-pictures/`
-- **그 밖** — 프로젝트의 `AGENTS.md`에서 이 파일을 가리킨다
+저장소를 받고 쓰고 싶은 스킬 폴더만 에이전트가 읽는 자리에 링크한다.
 
 ```bash
-git clone https://github.com/choneuny/explain-with-pictures.git
-ln -s "$PWD/explain-with-pictures" ~/.claude/skills/explain-with-pictures
+git clone https://github.com/choneuny/agent-kit.git
+ln -s "$PWD/agent-kit/skills/explain-with-pictures" ~/.claude/skills/explain-with-pictures
+ln -s "$PWD/agent-kit/skills/agent-concept-maps"    ~/.claude/skills/agent-concept-maps
+cp     agent-kit/skills/korean-writing/SKILL.md     ~/.claude/rules/korean-writing.md   # 상시 규칙
 ```
 
-그다음은 평범하게 부탁하면 된다. 「이거 그림으로 설명해 줘」, 「처음 보는 사람용 페이지로 만들어 줘」.
+Codex는 `~/.codex/skills/<이름>`에 같은 링크를 건다. 다른 도구는 프로젝트 `AGENTS.md`에서 해당 `SKILL.md`를 가리킨다.
 
-## 받은 그림에서 무엇을 보나
+## 어디서 왔나
 
-스킬이 그리는 법을 알고 있으니 사람이 할 일은 넷뿐이다.
-
-1. 상자 이름이 내가 쓰는 말인가
-2. 화살표가 맞는 쪽을 보나
-3. 근거 없는 것이 그려져 있지 않나
-4. 내가 아는 것 중 빠진 게 없나
-
-## 함께 쓰면 좋은 것
-
-한국어로 쓴다면 문체를 다듬는 스킬을 뒤에 한 번 통과시킨다. 이 스킬은 무엇을 그리고
-무엇을 쓸지를 정하고, 문장을 다듬는 일은 그쪽 몫이다.
-
-## 라이선스
-
-MIT.
-
-## 정본
-
-규칙의 정본은 유지자의 `~/.agents/skills/explain-with-pictures/`이고 이 저장소는 거기서 낸 공개본이다.
-두 쪽을 고칠 일이 생기면 정본을 먼저 고친다.
+셋 다 diagram-skill-eval 실험 저장소(비공개)에서 나왔다 — 다이어그램 15회, 한국어 규칙 30회의 격리 실행과
+블라인드 판정. 실험 기록은 요청하면 보여 준다. 글은 `korean-writing` 규칙으로 썼다.

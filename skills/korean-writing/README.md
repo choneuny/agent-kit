@@ -28,8 +28,8 @@
 - **그 밖** — 프로젝트의 `AGENTS.md`에서 이 파일을 가리킨다
 
 ```bash
-git clone https://github.com/choneuny/explain-with-pictures.git
-ln -s "$PWD/explain-with-pictures/korean-writing" ~/.codex/skills/korean-writing
+git clone https://github.com/choneuny/agent-kit.git
+ln -s "$PWD/agent-kit/skills/korean-writing" ~/.codex/skills/korean-writing
 ```
 
 한국어 문체는 매 답변에 걸리는 것이라 상시 규칙 쪽이 맞다. 스킬로 두면 글을 쓰겠다고 부를 때만 실린다.

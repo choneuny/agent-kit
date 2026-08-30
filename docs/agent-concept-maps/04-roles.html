@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>에이전트와 일할 때 사람이 쥐고 있어야 하는 것</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+:root{
+  --bg:#FBFAF7; --card:#FFFFFF; --ink:#15151A; --mid:#55555F; --dim:#8A8A93;
+  --line:#E6E4DD; --blue:#2F5FE0; --blue-s:#EAF0FF; --violet:#7A3FD4; --violet-s:#F3ECFF;
+  --amber:#C77A05; --amber-s:#FFF3DE; --green:#0B7A5A; --green-s:#E3F5EE; --gray-s:#EDEDEA;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px 120px}
+header.top{padding:72px 0 40px;border-bottom:1px solid var(--line);margin-bottom:56px}
+.kicker{font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--blue);margin:0 0 14px}
+h1{font-size:clamp(34px,5.4vw,52px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin:0 0 18px}
+.lede{font-size:20px;color:var(--mid);margin:0;max-width:60ch;line-height:1.7}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:900;letter-spacing:-.015em;margin:72px 0 14px}
+h3{font-size:19px;font-weight:700;margin:36px 0 8px}
+p{margin:0 0 18px;max-width:64ch}
+strong{font-weight:700}
+.fig{margin:32px 0 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;min-width:720px}
+.cap{font-size:15px;color:var(--dim);margin:0 0 40px;max-width:64ch}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amber);
+  border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+.note p:last-child{margin-bottom:0}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:28px 0}
+.cell{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.cell h4{margin:0 0 8px;font-size:17px;font-weight:700}
+.cell p{margin:0;font-size:16px;color:var(--mid);line-height:1.7}
+nav.back{margin:64px 0 0;padding-top:28px;border-top:1px solid var(--line);font-size:16px}
+nav.back a{color:var(--blue);font-weight:700;text-decoration:none}
+nav.back a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <p class="kicker">개념 지도 04</p>
+  <h1>에이전트와 일할 때<br>사람이 쥐고 있어야 하는 것</h1>
+  <p class="lede">에이전트에게 일을 시킨다는 건 한 번 부탁하고 결과를 받는 게 아니에요.
+  <strong>같은 자리를 여러 번 도는 일</strong>에 가깝습니다.
+  그 바퀴가 어떻게 생겼는지 먼저 보고, 그 안에서 사람 몫이 어디까지인지를 봅니다.</p>
+</header>
+
+<h2>한 바퀴</h2>
+<div class="fig">
+<svg viewBox="0 0 1000 500" role="img" aria-label="에이전트와 일하는 여섯 단계가 고리를 이루는 그림">
+  <defs>
+    <marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#15151A"/>
+    </marker>
+  </defs>
+
+  <rect x="40" y="80" width="270" height="120" rx="12" fill="#EAF0FF" stroke="#2F5FE0" stroke-width="2"/>
+  <text x="62" y="114" font-size="15" font-weight="700" fill="#2F5FE0">사람</text>
+  <text x="62" y="146" font-size="20" font-weight="900" fill="#15151A">① 무엇을 원하는지</text>
+  <text x="62" y="174" font-size="20" font-weight="900" fill="#15151A">말한다</text>
+
+  <rect x="365" y="80" width="270" height="120" rx="12" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="387" y="114" font-size="15" font-weight="700" fill="#0B7A5A">에이전트</text>
+  <text x="387" y="146" font-size="20" font-weight="900" fill="#15151A">② 어떻게 알아들었는지</text>
+  <text x="387" y="174" font-size="20" font-weight="900" fill="#15151A">되돌려 준다</text>
+
+  <rect x="690" y="80" width="270" height="120" rx="12" fill="#EAF0FF" stroke="#2F5FE0" stroke-width="2"/>
+  <text x="712" y="114" font-size="15" font-weight="700" fill="#2F5FE0">사람</text>
+  <text x="712" y="146" font-size="20" font-weight="900" fill="#15151A">③ 어긋난 곳을</text>
+  <text x="712" y="174" font-size="20" font-weight="900" fill="#15151A">짚는다</text>
+
+  <rect x="690" y="340" width="270" height="120" rx="12" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="712" y="374" font-size="15" font-weight="700" fill="#0B7A5A">에이전트</text>
+  <text x="712" y="406" font-size="20" font-weight="900" fill="#15151A">④ 만든다</text>
+
+  <rect x="365" y="340" width="270" height="120" rx="12" fill="#EAF0FF" stroke="#2F5FE0" stroke-width="2"/>
+  <text x="387" y="374" font-size="15" font-weight="700" fill="#2F5FE0">사람</text>
+  <text x="387" y="406" font-size="20" font-weight="900" fill="#15151A">⑤ 실물을 본다</text>
+
+  <rect x="40" y="340" width="270" height="120" rx="12" fill="#F3ECFF" stroke="#7A3FD4" stroke-width="2"/>
+  <text x="62" y="374" font-size="15" font-weight="700" fill="#7A3FD4">둘 다</text>
+  <text x="62" y="406" font-size="20" font-weight="900" fill="#15151A">⑥ 알게 된 것을</text>
+  <text x="62" y="434" font-size="20" font-weight="900" fill="#15151A">적어 둔다</text>
+
+  <path d="M310,140 H359" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a4)"/>
+  <path d="M635,140 H684" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a4)"/>
+  <path d="M825,200 V334" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a4)"/>
+  <path d="M684,400 H641" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a4)"/>
+  <path d="M359,400 H316" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a4)"/>
+  <path d="M175,340 V206" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a4)"/>
+
+  <text x="500" y="252" font-size="21" font-weight="900" fill="#55555F" text-anchor="middle">한 바퀴를 짧게, 자주</text>
+  <text x="500" y="284" font-size="16" fill="#8A8A93" text-anchor="middle">크게 한 번 도는 것보다</text>
+  <text x="500" y="306" font-size="16" fill="#8A8A93" text-anchor="middle">작게 여러 번 도는 쪽이 싸다</text>
+
+  <text x="500" y="40" font-size="16" font-weight="700" fill="#8A8A93" text-anchor="middle">파랑은 사람 차례, 초록은 에이전트 차례</text>
+</svg>
+</div>
+<p class="cap">여섯 자리 가운데 에이전트에게 온전히 넘기는 건 ④ 하나뿐이에요. 나머지는 사람이 쥐고 있거나 둘이 같이 하는 자리입니다.</p>
+
+<p>바퀴의 앞쪽 절반이 특히 중요해요. 에이전트가 바로 만들지 않고 「제가 이해한 건 이겁니다」를
+먼저 내놓게 하면, 어긋난 곳을 한 군데만 짚어서 고칠 수 있습니다.
+끝에서 알게 된 것을 한 줄 적어 두면 다음 바퀴는 그만큼 짧아져요. <strong>바퀴가 돌수록 싸지는 건 그 덕분이에요.</strong></p>
+<div class="fig">
+<svg viewBox="0 0 1000 320" role="img" aria-label="잘못을 늦게 발견할수록 고치는 값이 커진다는 막대 그림">
+  <line x1="40" y1="262" x2="960" y2="262" stroke="#C9C7C0" stroke-width="2"/>
+  <text x="40" y="34" font-size="17" font-weight="900" fill="#55555F">같은 잘못이라도, 늦게 잡을수록 고치는 값이 커진다</text>
+
+  <rect x="60" y="242" width="120" height="20" rx="4" fill="#0B7A5A"/>
+  <rect x="210" y="222" width="120" height="40" rx="4" fill="#0B7A5A"/>
+  <rect x="360" y="192" width="120" height="70" rx="4" fill="#C77A05"/>
+  <rect x="510" y="142" width="120" height="120" rx="4" fill="#C77A05"/>
+  <rect x="660" y="82" width="120" height="180" rx="4" fill="#B3391F"/>
+  <rect x="810" y="42" width="120" height="220" rx="4" fill="#B3391F"/>
+
+  <text x="120" y="288" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">말할 때</text>
+  <text x="270" y="288" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">계획을 볼 때</text>
+  <text x="420" y="288" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">만드는 중에</text>
+  <text x="570" y="288" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">다 만든 뒤에</text>
+  <text x="720" y="288" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">남에게 넘긴 뒤</text>
+  <text x="870" y="288" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">쓰기 시작한 뒤</text>
+</svg>
+</div>
+<p class="cap">막대 높이는 크기 차이를 보이려고 그린 것이라 정확한 수치는 아니에요.</p>
+
+<p>계획 다섯 줄을 다시 쓰는 건 이 분이면 끝나요. 다 만든 코드를 되돌리는 건 반나절이 걸리고
+남에게 넘긴 뒤라면 남의 시간까지 같이 버립니다. 같은 오해인데 잡는 자리에 따라 값이 백 배 차이가 나요.
+그래서 빨리 만들고 싶어서 「알아서 해 줘」로 넘기는 것이 가장 비쌉니다.</p>
+
+<h2>사람 몫과 에이전트 몫</h2>
+<p>바퀴의 여섯 자리를 누가 맡느냐는 결국 하나로 갈려요. <strong>이 자리에 판단이 들어가는가.</strong> 판단이 들어가는 자리를 넘기면 일은 끝나는데 남는 게 없습니다.</p>
+<div class="fig">
+<svg viewBox="0 0 1000 580" role="img" aria-label="사람의 몫과 에이전트의 몫, 그리고 함께 하는 자리를 세 칸으로 가른 그림">
+  <text x="175" y="52" font-size="21" font-weight="900" fill="#2F5FE0" text-anchor="middle">사람의 몫</text>
+  <text x="500" y="52" font-size="21" font-weight="900" fill="#7A3FD4" text-anchor="middle">함께 하는 자리</text>
+  <text x="825" y="52" font-size="21" font-weight="900" fill="#0B7A5A" text-anchor="middle">에이전트의 몫</text>
+
+  <rect x="30" y="70" width="290" height="490" rx="14" fill="#F4F7FF" stroke="#2F5FE0" stroke-width="2"/>
+  <rect x="352" y="70" width="296" height="490" rx="14" fill="#FAF6FF" stroke="#7A3FD4" stroke-width="2"/>
+  <rect x="680" y="70" width="290" height="490" rx="14" fill="#F3FAF7" stroke="#0B7A5A" stroke-width="2"/>
+
+  <rect x="44" y="96" width="262" height="76" rx="10" fill="#FFFFFF" stroke="#B9CBF2" stroke-width="2"/>
+  <text x="62" y="128" font-size="17" font-weight="700" fill="#15151A">무엇을 만들지 정한다</text>
+  <text x="62" y="152" font-size="14" fill="#55555F">목표와 범위를 긋는 일</text>
+
+  <rect x="44" y="184" width="262" height="76" rx="10" fill="#FFFFFF" stroke="#B9CBF2" stroke-width="2"/>
+  <text x="62" y="216" font-size="17" font-weight="700" fill="#15151A">무엇이 됐다고 볼지 정한다</text>
+  <text x="62" y="240" font-size="14" fill="#55555F">끝났다는 기준</text>
+
+  <rect x="44" y="272" width="262" height="76" rx="10" fill="#FFFFFF" stroke="#B9CBF2" stroke-width="2"/>
+  <text x="62" y="304" font-size="17" font-weight="700" fill="#15151A">되돌리기 어려운 일을</text>
+  <text x="62" y="328" font-size="17" font-weight="700" fill="#15151A">승인한다</text>
+
+  <rect x="44" y="360" width="262" height="76" rx="10" fill="#FFFFFF" stroke="#B9CBF2" stroke-width="2"/>
+  <text x="62" y="392" font-size="17" font-weight="700" fill="#15151A">결과가 진짜인지 본다</text>
+  <text x="62" y="416" font-size="14" fill="#55555F">「됐습니다」는 근거가 아니다</text>
+
+  <rect x="44" y="448" width="262" height="90" rx="10" fill="#FFF3DE" stroke="#C77A05" stroke-width="3"/>
+  <text x="62" y="482" font-size="19" font-weight="900" fill="#C77A05">배운다</text>
+  <text x="62" y="508" font-size="14" fill="#15151A">이 칸만은 옮길 방법이</text>
+  <text x="62" y="528" font-size="14" fill="#15151A">아예 없다</text>
+
+  <rect x="366" y="96" width="268" height="76" rx="10" fill="#FFFFFF" stroke="#D2BEF0" stroke-width="2"/>
+  <text x="384" y="128" font-size="17" font-weight="700" fill="#15151A">말을 맞춘다</text>
+  <text x="384" y="152" font-size="14" fill="#55555F">같은 것을 같은 이름으로</text>
+
+  <rect x="366" y="184" width="268" height="76" rx="10" fill="#FFFFFF" stroke="#D2BEF0" stroke-width="2"/>
+  <text x="384" y="216" font-size="17" font-weight="700" fill="#15151A">계획을 놓고 합의한다</text>
+  <text x="384" y="240" font-size="14" fill="#55555F">만들기 전에 한 번</text>
+
+  <rect x="366" y="272" width="268" height="76" rx="10" fill="#FFFFFF" stroke="#D2BEF0" stroke-width="2"/>
+  <text x="384" y="304" font-size="17" font-weight="700" fill="#15151A">어긋난 곳을 좁힌다</text>
+  <text x="384" y="328" font-size="14" fill="#55555F">한 군데씩 짚어 가며</text>
+
+  <text x="500" y="400" font-size="15" fill="#7A3FD4" text-anchor="middle">이 칸이 얇을수록</text>
+  <text x="500" y="424" font-size="15" fill="#7A3FD4" text-anchor="middle">양쪽이 헛일을 한다</text>
+
+  <rect x="694" y="96" width="262" height="76" rx="10" fill="#FFFFFF" stroke="#A8D9C7" stroke-width="2"/>
+  <text x="712" y="128" font-size="17" font-weight="700" fill="#15151A">뒤지고 읽고 센다</text>
+  <text x="712" y="152" font-size="14" fill="#55555F">파일 수백 개도 마다 않는다</text>
+
+  <rect x="694" y="184" width="262" height="76" rx="10" fill="#FFFFFF" stroke="#A8D9C7" stroke-width="2"/>
+  <text x="712" y="216" font-size="17" font-weight="700" fill="#15151A">반복되는 손일</text>
+  <text x="712" y="240" font-size="14" fill="#55555F">지루해하지 않는다</text>
+
+  <rect x="694" y="272" width="262" height="76" rx="10" fill="#FFFFFF" stroke="#A8D9C7" stroke-width="2"/>
+  <text x="712" y="304" font-size="17" font-weight="700" fill="#15151A">초안을 만든다</text>
+  <text x="712" y="328" font-size="14" fill="#55555F">고칠 것을 만들어 준다</text>
+
+  <rect x="694" y="360" width="262" height="76" rx="10" fill="#FFFFFF" stroke="#A8D9C7" stroke-width="2"/>
+  <text x="712" y="392" font-size="17" font-weight="700" fill="#15151A">여러 갈래를 동시에</text>
+  <text x="712" y="416" font-size="14" fill="#55555F">셋을 나란히 해 보고 고른다</text>
+
+  <rect x="694" y="448" width="262" height="90" rx="10" fill="#FFFFFF" stroke="#A8D9C7" stroke-width="2"/>
+  <text x="712" y="482" font-size="17" font-weight="700" fill="#15151A">적어 둔다</text>
+  <text x="712" y="508" font-size="14" fill="#55555F">오간 이야기를 문서로</text>
+  <text x="712" y="528" font-size="14" fill="#55555F">남기는 일</text>
+</svg>
+</div>
+<p class="cap">왼쪽 칸은 전부 「정한다·본다」로 끝나고, 오른쪽 칸은 전부 「한다」로 끝나요.
+이 어미 차이가 그대로 경계입니다.</p>
+
+<h2>가르는 기준 한 줄</h2>
+<p><strong>틀렸을 때 누가 책임지는가</strong>를 물으면 대개 답이 나와요.
+파일 삼백 개에서 어떤 낱말을 찾는 일은 틀려도 다시 찾으면 그만이니 넘겨도 돼요.
+「이 기능을 넣을 것인가 말 것인가」는 틀리면 내가 감당하니 내가 정해야 해요.</p>
+<p>비슷한 물음이 하나 더 있습니다. <strong>이 일을 잘하려면 무엇을 알아야 하는가.</strong>
+답이 이 프로젝트 밖의 사정이면 대개 사람 몫이에요. 얼마를 쓸 수 있는지, 언제까지 필요한지,
+누가 쓸 것인지는 코드 어디에도 안 적혀 있으니까요.</p>
+
+<h2>배움만은 옮길 수 없다</h2>
+<p>나머지 넷은 급하면 대충 넘길 수도 있어요. 손해를 보긴 하지만 일은 굴러갑니다.
+그런데 배움은 넘기면 <strong>넘긴 만큼 그대로 사라져요.</strong></p>
+
+<div class="fig">
+<svg viewBox="0 0 1000 340" role="img" aria-label="전부 맡겼을 때와 결정을 쥐고 있었을 때 남는 것이 다르다는 그림">
+  <defs>
+    <marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#15151A"/>
+    </marker>
+  </defs>
+
+  <rect x="30" y="140" width="200" height="80" rx="12" fill="#FFFFFF" stroke="#15151A" stroke-width="3"/>
+  <text x="130" y="176" font-size="18" font-weight="900" fill="#15151A" text-anchor="middle">같은 일을</text>
+  <text x="130" y="200" font-size="18" font-weight="900" fill="#15151A" text-anchor="middle">에이전트에게 맡긴다</text>
+
+  <path d="M230,180 H300 V110 H394" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a5)"/>
+  <path d="M300,180 V250 H394" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a5)"/>
+
+  <rect x="400" y="70" width="250" height="80" rx="12" fill="#FDE8E4" stroke="#B3391F" stroke-width="2"/>
+  <text x="422" y="106" font-size="18" font-weight="900" fill="#B3391F">전부 맡긴다</text>
+  <text x="422" y="132" font-size="14" fill="#15151A">계획도 확인도 넘긴다</text>
+
+  <rect x="400" y="210" width="250" height="80" rx="12" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="422" y="246" font-size="18" font-weight="900" fill="#0B7A5A">결정과 확인은 쥔다</text>
+  <text x="422" y="272" font-size="14" fill="#15151A">만드는 일만 넘긴다</text>
+
+  <path d="M650,110 H744" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a5)"/>
+  <path d="M650,250 H744" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#a5)"/>
+
+  <rect x="750" y="70" width="220" height="80" rx="12" fill="#FFFFFF" stroke="#B3391F" stroke-width="2"/>
+  <text x="770" y="104" font-size="16" font-weight="700" fill="#15151A">결과물은 나왔다</text>
+  <text x="770" y="130" font-size="16" font-weight="900" fill="#B3391F">나는 그대로다</text>
+
+  <rect x="750" y="210" width="220" height="80" rx="12" fill="#FFFFFF" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="770" y="244" font-size="16" font-weight="700" fill="#15151A">결과물도 나왔고</text>
+  <text x="770" y="270" font-size="16" font-weight="900" fill="#0B7A5A">나도 알게 됐다</text>
+</svg>
+</div>
+<p class="cap">두 갈래의 결과물은 같아 보여요. 다른 건 그 일을 끝낸 사람 쪽입니다.</p>
+
+<p>이게 왜 문제가 되냐면, <strong>다음 번에 무엇을 물어야 할지 모르게 되기 때문</strong>이에요.
+에이전트가 잘못 가고 있어도 짚을 수가 없고 결과가 이상해도 어디가 이상한지 말할 수가 없습니다.
+바퀴를 돌수록 실력이 붙는 게 아니라, 바퀴를 돌수록 에이전트 없이는 아무것도 못 하게 돼요.</p>
+<p>그래서 처음 얼마간은 일부러 느리게 가는 편이 낫습니다.
+계획을 읽고, 왜 그렇게 했는지 묻고, 만든 것을 열어 보는 거예요.
+이 세 가지만 해도 「시켰더니 됐다」와 「내가 만들었다」의 차이가 납니다.</p>
+
+<h2>흔히 넘어가는 자리</h2>
+<div class="grid">
+  <div class="cell">
+    <h4>완료 기준을 안 정하고 시작</h4>
+    <p>「좋게 만들어 줘」로 시작하면 에이전트가 자기 기준을 만들어요. 그 기준이 내 기준과 같을 이유가 없습니다.</p>
+  </div>
+  <div class="cell">
+    <h4>「됐습니다」를 결과로 받기</h4>
+    <p>보고는 근거가 아니에요. 실제로 열어 보기 전까지는 아무것도 확인된 게 아닙니다.</p>
+  </div>
+  <div class="cell">
+    <h4>모르는 낱말을 그냥 넘기기</h4>
+    <p>모르는 말이 나왔을 때 물어보지 않고 넘기면, 그 자리부터 판단을 놓기 시작해요.</p>
+  </div>
+</div>
+
+<div class="note">
+<p><strong>기억해 둘 한 줄.</strong> 손일은 넘기고 판단은 쥡니다.
+넘겨서 아낀 시간보다, 쥐고 있어서 알게 된 것이 오래 갑니다.</p>
+</div>
+
+<nav class="back"><a href="./">← 개념 지도 목록으로</a></nav>
+</div>
+</body>
+</html>
+</div>
+</body>
+</html>

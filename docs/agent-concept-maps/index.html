@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>에이전트 개념 지도</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+:root{
+  --bg:#FBFAF7; --card:#FFFFFF; --ink:#15151A; --mid:#55555F; --dim:#8A8A93;
+  --line:#E6E4DD; --blue:#2F5FE0; --blue-s:#EAF0FF; --violet:#7A3FD4; --violet-s:#F3ECFF;
+  --amber:#C77A05; --amber-s:#FFF3DE; --green:#0B7A5A; --green-s:#E3F5EE; --gray-s:#EDEDEA;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px 120px}
+header.top{padding:72px 0 40px;border-bottom:1px solid var(--line);margin-bottom:56px}
+.kicker{font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--blue);margin:0 0 14px}
+h1{font-size:clamp(34px,5.4vw,52px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin:0 0 18px}
+.lede{font-size:20px;color:var(--mid);margin:0;max-width:60ch;line-height:1.7}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:900;letter-spacing:-.015em;margin:72px 0 14px}
+h3{font-size:19px;font-weight:700;margin:36px 0 8px}
+p{margin:0 0 18px;max-width:64ch}
+strong{font-weight:700}
+.fig{margin:32px 0 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;min-width:720px}
+.cap{font-size:15px;color:var(--dim);margin:0 0 40px;max-width:64ch}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amber);
+  border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+.note p:last-child{margin-bottom:0}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:28px 0}
+.cell{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.cell h4{margin:0 0 8px;font-size:17px;font-weight:700}
+.cell p{margin:0;font-size:16px;color:var(--mid);line-height:1.7}
+nav.back{margin:64px 0 0;padding-top:28px;border-top:1px solid var(--line);font-size:16px}
+nav.back a{color:var(--blue);font-weight:700;text-decoration:none}
+nav.back a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <p class="kicker">개념 지도</p>
+  <h1>에이전트를 쓰기 전에<br>알아 두면 좋은 것들</h1>
+  <p class="lede">코딩 에이전트가 안에서 무슨 일을 하는지, 그리고 그걸 쓰는 사람이 무엇을 해야 하는지를
+  그림 한 장씩으로 풀었어요. 순서대로 읽으면 뒤로 갈수록 앞의 이야기가 쓰입니다. 한 장에 십 분쯤 걸려요.</p>
+</header>
+
+<h2>안쪽 이야기</h2>
+<p>에이전트가 어떻게 생겼고 무엇으로 굴러가는지.</p>
+<div class="grid" style="grid-template-columns:1fr;gap:14px">
+  <a class="cell" style="display:block;text-decoration:none;color:inherit" href="01-prompt-map.html">
+    <h4 style="color:#2F5FE0">01 &nbsp;에이전트에게 매번 무엇이 건네지는가</h4>
+    <p>에이전트는 기억하지 않아요. 매 차례 지금까지의 전부를 다시 받습니다.
+    그 전부에 무엇이 들어 있는지, 그리고 왜 대화가 길어질수록 느려지고 비싸지는지.</p>
+  </a>
+  <a class="cell" style="display:block;text-decoration:none;color:inherit" href="02-coding-agent.html">
+    <h4 style="color:#0B7A5A">02 &nbsp;코딩 에이전트란 무엇인가</h4>
+    <p>챗봇과 달리 손이 있어요. 폴더 하나를 붙잡고 파일을 직접 고칩니다.
+    지침과 메모리와 스킬이 무엇인지 하나씩 보고, 어디까지 알아서 하게 둘지를 정하는 문이 어디 있는지도 찾아봅니다.</p>
+  </a>
+  <a class="cell" style="display:block;text-decoration:none;color:inherit" href="03-context-map.html">
+    <h4 style="color:#7A3FD4">03 &nbsp;컨텍스트 지도는 무엇을 보여주는가</h4>
+    <p>매번 실리는 것이 대체 얼마나 되는지를 재서 펼쳐 놓은 그림.
+    넓이와 색과 빗금이 각각 무엇을 뜻하는지, 그리고 그걸 보고 나서 무엇을 하는지.</p>
+  </a>
+</div>
+
+<h2>일하는 이야기</h2>
+<p>그 에이전트를 실제로 쓸 때 사람 쪽에서 할 일.</p>
+<div class="grid" style="grid-template-columns:1fr;gap:14px">
+  <a class="cell" style="display:block;text-decoration:none;color:inherit" href="04-roles.html">
+    <h4 style="color:#2F5FE0">04 &nbsp;에이전트와 일할 때 사람이 쥐고 있어야 하는 것</h4>
+    <p>부탁 한 번으로 끝나지 않고 같은 자리를 여러 번 도는 일이에요.
+    그 바퀴가 어떻게 생겼는지, 사람 몫과 에이전트 몫이 어디서 갈리는지,
+    그중 배움만은 왜 옮길 방법이 아예 없는지.</p>
+  </a>
+  <a class="cell" style="display:block;text-decoration:none;color:inherit" href="05-visual-loop.html">
+    <h4 style="color:#7A3FD4">05 &nbsp;왜 그림으로 주고받아야 하나</h4>
+    <p>말은 서로 다른 것을 떠올리고도 같은 말처럼 들려요. 그림 한 장이 어긋난 곳을 어떻게 드러내는지,
+    그리고 받은 그림에서 무엇을 짚어야 하는지.</p>
+  </a>
+</div>
+
+<div class="note">
+<p>다섯 장 모두 파일 하나로 끝나요. 링크를 열면 그대로 보이고 내려받아 두 번 눌러도 똑같이 열립니다.</p>
+</div>
+</div>
+</body>
+</html>

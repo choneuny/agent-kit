@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>explain-with-pictures — 설명을 그림 한 장으로</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+:root{
+  --bg:#FBFAF7; --card:#FFFFFF; --ink:#15151A; --mid:#55555F; --dim:#8A8A93;
+  --line:#E6E4DD; --blue:#2F5FE0; --blue-s:#EAF0FF; --violet:#7A3FD4; --violet-s:#F3ECFF;
+  --amber:#C77A05; --amber-s:#FFF3DE; --green:#0B7A5A; --green-s:#E3F5EE; --gray-s:#EDEDEA;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px 120px}
+header.top{padding:72px 0 40px;border-bottom:1px solid var(--line);margin-bottom:56px}
+.kicker{font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--blue);margin:0 0 14px}
+h1{font-size:clamp(34px,5.4vw,52px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin:0 0 18px}
+.lede{font-size:20px;color:var(--mid);margin:0;max-width:60ch;line-height:1.7}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:900;letter-spacing:-.015em;margin:72px 0 14px}
+h3{font-size:19px;font-weight:700;margin:36px 0 8px}
+p{margin:0 0 18px;max-width:64ch}
+strong{font-weight:700}
+.fig{margin:32px 0 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;min-width:720px}
+.cap{font-size:15px;color:var(--dim);margin:0 0 40px;max-width:64ch}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amber);
+  border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+.note p:last-child{margin-bottom:0}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:28px 0}
+.cell{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.cell h4{margin:0 0 8px;font-size:17px;font-weight:700}
+.cell p{margin:0;font-size:16px;color:var(--mid);line-height:1.7}
+nav.back{margin:64px 0 0;padding-top:28px;border-top:1px solid var(--line);font-size:16px}
+nav.back a{color:var(--blue);font-weight:700;text-decoration:none}
+nav.back a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <p class="kicker">explain-with-pictures</p>
+  <h1>설명을 그림 한 장으로<br>내놓게 하는 규칙</h1>
+  <p class="lede">에이전트에게 「이거 좀 설명해 줘」라고 하면 대개 긴 글이 옵니다.
+  이 스킬을 얹으면 <strong>그림 한 장이 있는 페이지</strong>가 대신 옵니다.
+  규칙은 열두 줄, 파일 하나가 전부예요.</p>
+</header>
+
+<h2>무엇이 오가나</h2>
+<div class="fig">
+<svg viewBox="0 0 1000 470" role="img" aria-label="설명할 개념과 근거가 스킬을 거쳐 HTML 한 장이 되고, 사람이 그것을 짚어 되돌리는 흐름">
+  <defs>
+    <marker id="as" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#15151A"/>
+    </marker>
+    <marker id="asd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#C77A05"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="60" font-size="16" font-weight="700" fill="#8A8A93">에이전트에게 주는 것</text>
+
+  <rect x="40" y="80" width="250" height="90" rx="12" fill="#EAF0FF" stroke="#2F5FE0" stroke-width="2"/>
+  <text x="62" y="118" font-size="19" font-weight="900" fill="#2F5FE0">설명할 개념</text>
+  <text x="62" y="146" font-size="15" fill="#15151A">한 장에 하나만</text>
+
+  <rect x="40" y="200" width="250" height="90" rx="12" fill="#EAF0FF" stroke="#2F5FE0" stroke-width="2"/>
+  <text x="62" y="238" font-size="19" font-weight="900" fill="#2F5FE0">근거가 될 것</text>
+  <text x="62" y="266" font-size="15" fill="#15151A">실제 문서와 코드</text>
+
+  <path d="M290,125 H330" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M290,245 H330" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M330,125 V245" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M330,185 H414" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#as)"/>
+
+  <rect x="420" y="105" width="180" height="160" rx="14" fill="#FFFFFF" stroke="#15151A" stroke-width="3"/>
+  <text x="510" y="172" font-size="22" font-weight="900" fill="#15151A" text-anchor="middle">스킬</text>
+  <text x="510" y="202" font-size="15" fill="#55555F" text-anchor="middle">그림 아홉 줄</text>
+  <text x="510" y="224" font-size="15" fill="#55555F" text-anchor="middle">글 다섯 줄</text>
+
+  <path d="M600,185 H694" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#as)"/>
+
+  <rect x="700" y="85" width="260" height="200" rx="14" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="722" y="122" font-size="19" font-weight="900" fill="#0B7A5A">HTML 한 장</text>
+  <rect x="722" y="140" width="216" height="70" rx="8" fill="#FFFFFF" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="830" y="182" font-size="16" font-weight="700" fill="#15151A" text-anchor="middle">그림</text>
+  <text x="722" y="238" font-size="15" fill="#15151A">그리고 그것을 푸는 산문</text>
+  <text x="722" y="262" font-size="15" fill="#15151A">바깥 의존은 웹폰트뿐</text>
+
+  <rect x="420" y="355" width="180" height="80" rx="12" fill="#FFF3DE" stroke="#C77A05" stroke-width="3"/>
+  <text x="510" y="392" font-size="18" font-weight="900" fill="#C77A05" text-anchor="middle">사람이 짚는다</text>
+  <text x="510" y="416" font-size="14" fill="#15151A" text-anchor="middle">네 가지만 본다</text>
+
+  <path d="M830,285 V395 H606" stroke="#C77A05" stroke-width="3" fill="none" stroke-dasharray="9 7" marker-end="url(#asd)"/>
+  <path d="M510,355 V271" stroke="#C77A05" stroke-width="3" fill="none" stroke-dasharray="9 7" marker-end="url(#asd)"/>
+  <text x="618" y="432" font-size="15" font-weight="700" fill="#C77A05">어긋난 곳 하나만 말하면 다시 그린다</text>
+</svg>
+</div>
+<p class="cap">사람이 그리는 법을 알 필요는 없어요. 규칙은 스킬이 들고 있고, 무엇이 어긋났는지는 사람만 압니다.</p>
+
+<h2>사람이 보는 네 가지</h2>
+<div class="grid">
+  <div class="cell">
+    <h4>상자 이름이 내 말인가</h4>
+    <p>내가 안 쓰는 낱말이 상자에 적혀 있으면 다른 세계의 물건을 그린 거예요.</p>
+  </div>
+  <div class="cell">
+    <h4>화살표가 맞는 쪽을 보나</h4>
+    <p>무엇이 무엇을 부르는지. 여기서 어긋나는 일이 제일 잦습니다.</p>
+  </div>
+  <div class="cell">
+    <h4>없는 것이 그려져 있지 않나</h4>
+    <p>근거 없이 채워 넣은 상자. 규칙이 막고는 있지만 사람이 한 번 더 봅니다.</p>
+  </div>
+  <div class="cell">
+    <h4>내가 아는 것 중 빠진 게 없나</h4>
+    <p>그림에 없는데 실제로는 있는 것. 이건 사람만 알아볼 수 있어요.</p>
+  </div>
+</div>
+
+<h2>왜 이렇게 짧은가</h2>
+<p>규칙이 짧은 건 게을러서가 아니라 <strong>재 봤더니 짧은 쪽이 이겼기 때문</strong>이에요.
+같은 그림 과제를 세 프로젝트에 대해 다섯 가지 지침으로 각각 그리게 하고, 모두 열다섯 번을 같은 조건에서 돌렸습니다.</p>
+
+<div class="fig">
+<svg viewBox="0 0 1000 330" role="img" aria-label="지침의 토큰 수를 막대로 비교한 그림. 가장 작은 것이 판정에서 1위였다">
+  <line x1="40" y1="252" x2="960" y2="252" stroke="#C9C7C0" stroke-width="2"/>
+  <text x="40" y="34" font-size="17" font-weight="900" fill="#55555F">지침의 토큰 수 — 막대가 클수록 매번 더 많이 실린다</text>
+
+  <rect x="70" y="62" width="140" height="190" rx="4" fill="#D8D6CF"/>
+  <text x="140" y="52" font-size="16" font-weight="900" fill="#55555F" text-anchor="middle">20,400</text>
+  <rect x="250" y="169" width="140" height="83" rx="4" fill="#D8D6CF"/>
+  <text x="320" y="159" font-size="16" font-weight="900" fill="#55555F" text-anchor="middle">8,900</text>
+  <rect x="430" y="231" width="140" height="21" rx="4" fill="#D8D6CF"/>
+  <text x="500" y="221" font-size="16" font-weight="900" fill="#55555F" text-anchor="middle">2,300</text>
+  <rect x="610" y="243" width="140" height="9" rx="4" fill="#0B7A5A"/>
+  <text x="680" y="233" font-size="16" font-weight="900" fill="#0B7A5A" text-anchor="middle">640</text>
+  <rect x="790" y="249" width="140" height="3" rx="1" fill="#8A8A93"/>
+  <text x="860" y="239" font-size="16" font-weight="900" fill="#55555F" text-anchor="middle">0</text>
+
+  <text x="140" y="278" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">시중 스킬</text>
+  <text x="320" y="278" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">그 경량판</text>
+  <text x="500" y="278" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">압축판</text>
+  <text x="680" y="278" font-size="15" font-weight="900" fill="#0B7A5A" text-anchor="middle">이 스킬의 원형</text>
+  <text x="860" y="278" font-size="15" font-weight="700" fill="#15151A" text-anchor="middle">지침 없음</text>
+
+  <text x="140" y="304" font-size="14" fill="#B3391F" text-anchor="middle">판정 바닥</text>
+  <text x="320" y="304" font-size="14" fill="#B3391F" text-anchor="middle">판정 바닥</text>
+  <text x="680" y="304" font-size="14" font-weight="900" fill="#0B7A5A" text-anchor="middle">세 표본 모두 1위</text>
+</svg>
+</div>
+<p class="cap">순위를 적지 않은 둘은 중간이었습니다. 표본이 셋뿐이라 순서까지 못 박을 수는 없어요.</p>
+
+<p>무거운 지침이 진 이유는 분명했어요. 좌표를 손으로 계산하게 시키니 한글 라벨이 상자를 넘쳤고,
+글자 크기를 픽셀로 못 박아 두니 축소하면 안 읽혔고, 화살표 개수 상한이 정보를 깎았습니다.
+<strong>그래서 이 스킬에는 수치가 없습니다.</strong> 원칙만 두고 값은 그림마다 다시 고르게 해요.</p>
+
+<h2>얹는 법</h2>
+<p>파일 하나를 에이전트가 읽는 자리에 두면 끝이에요. Claude Code는 <code>~/.claude/skills/</code>,
+Codex는 <code>~/.codex/skills/</code> 아래에 폴더째 놓습니다. 그 밖의 도구라면 프로젝트 안내문에서 이 파일을 가리키면 돼요.</p>
+<p>한국어로 쓸 거라면 문장을 다듬는 스킬을 뒤에 하나 더 두는 편이 좋습니다.
+이 스킬은 무엇을 그리고 무엇을 쓸지를 정하고, 문장을 고르는 일은 그쪽 몫이에요.</p>
+
+<div class="note">
+<p><strong>기억해 둘 한 줄.</strong> 그림은 예쁘게 보이려고 그리는 게 아니라
+<em>어긋난 곳을 빨리 찾으려고</em> 그려요. 규칙을 늘리면 그림이 좋아질 것 같지만, 재 봤더니 반대였습니다.</p>
+</div>
+
+<nav class="back"><a href="https://github.com/choneuny/explain-with-pictures">저장소로 →</a></nav>
+</div>
+</body>
+</html>

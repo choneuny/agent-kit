@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>코딩 에이전트란 무엇인가</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+:root{
+  --bg:#FBFAF7; --card:#FFFFFF; --ink:#15151A; --mid:#55555F; --dim:#8A8A93;
+  --line:#E6E4DD; --blue:#2F5FE0; --blue-s:#EAF0FF; --violet:#7A3FD4; --violet-s:#F3ECFF;
+  --amber:#C77A05; --amber-s:#FFF3DE; --green:#0B7A5A; --green-s:#E3F5EE; --gray-s:#EDEDEA;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px 120px}
+header.top{padding:72px 0 40px;border-bottom:1px solid var(--line);margin-bottom:56px}
+.kicker{font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--blue);margin:0 0 14px}
+h1{font-size:clamp(34px,5.4vw,52px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin:0 0 18px}
+.lede{font-size:20px;color:var(--mid);margin:0;max-width:60ch;line-height:1.7}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:900;letter-spacing:-.015em;margin:72px 0 14px}
+h3{font-size:19px;font-weight:700;margin:36px 0 8px}
+p{margin:0 0 18px;max-width:64ch}
+strong{font-weight:700}
+.fig{margin:32px 0 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;min-width:720px}
+.cap{font-size:15px;color:var(--dim);margin:0 0 40px;max-width:64ch}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amber);
+  border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+.note p:last-child{margin-bottom:0}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:28px 0}
+.cell{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.cell h4{margin:0 0 8px;font-size:17px;font-weight:700}
+.cell p{margin:0;font-size:16px;color:var(--mid);line-height:1.7}
+nav.back{margin:64px 0 0;padding-top:28px;border-top:1px solid var(--line);font-size:16px}
+nav.back a{color:var(--blue);font-weight:700;text-decoration:none}
+nav.back a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <p class="kicker">개념 지도 02</p>
+  <h1>코딩 에이전트란<br>무엇인가</h1>
+  <p class="lede">챗봇과 가장 크게 다른 점은 하나예요. <strong>손이 있습니다.</strong>
+  말로 답하는 데서 그치지 않고 내 컴퓨터의 파일을 직접 열어 읽고, 고치고, 명령을 실행해요.
+  이름은 Codex, Claude Code처럼 여럿이지만 생김새는 거의 같습니다.</p>
+</header>
+
+<h2>손이 있다는 말</h2>
+<p>보통 챗봇에게 「이 파일 고쳐 줘」라고 하면 고친 내용을 글로 적어 주고, 붙여 넣는 건 내 몫이에요.
+코딩 에이전트는 그 붙여 넣기까지 자기가 합니다. 파일을 열어 보고 바꿔 쓰고 프로그램을 돌려 봐요. 안 되면 다시 고치고요.</p>
+<p>편한 만큼 위험도 따라와요. 잘못 고치면 잘못 고쳐진 채로 저장되니까요.
+아래 그림에서 「허용 모드」라는 문이 그래서 있습니다.</p>
+
+<h2>전체 생김새</h2>
+<div class="fig">
+<svg viewBox="0 0 1000 500" role="img" aria-label="코딩 에이전트에 붙는 것들과 프로젝트 폴더, 그 사이의 허용 모드">
+  <defs>
+    <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#15151A"/>
+    </marker>
+    <marker id="ahd2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7A3FD4"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="34" font-size="16" font-weight="700" fill="#8A8A93">에이전트에 늘 붙어 있는 것</text>
+
+  <rect x="40" y="60" width="250" height="100" rx="12" fill="#EAF0FF" stroke="#2F5FE0" stroke-width="2"/>
+  <text x="62" y="96" font-size="19" font-weight="900" fill="#2F5FE0">기본 지침</text>
+  <text x="62" y="122" font-size="14" fill="#15151A">이 폴더에서 일할 때</text>
+  <text x="62" y="144" font-size="14" fill="#15151A">매번 읽는 쪽지</text>
+
+  <rect x="40" y="185" width="250" height="100" rx="12" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="62" y="221" font-size="19" font-weight="900" fill="#0B7A5A">메모리</text>
+  <text x="62" y="247" font-size="14" fill="#15151A">잊으면 곤란한 것을</text>
+  <text x="62" y="269" font-size="14" fill="#15151A">따로 적어 둔 파일</text>
+
+  <rect x="40" y="310" width="250" height="110" rx="12" fill="#F3ECFF" stroke="#7A3FD4" stroke-width="2"/>
+  <text x="62" y="346" font-size="19" font-weight="900" fill="#7A3FD4">스킬</text>
+  <text x="62" y="372" font-size="14" fill="#15151A">평소엔 이름만 보이고</text>
+  <text x="62" y="394" font-size="14" fill="#15151A">필요할 때 펼쳐 읽는 설명서</text>
+
+  <path d="M290,110 H330" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M290,235 H330" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M290,365 H330" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M330,110 V365" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M330,240 H394" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#ah2)"/>
+
+  <rect x="400" y="180" width="220" height="190" rx="14" fill="#FFFFFF" stroke="#15151A" stroke-width="3"/>
+  <text x="510" y="258" font-size="30" font-weight="900" fill="#15151A" text-anchor="middle">에이전트</text>
+  <text x="510" y="292" font-size="15" fill="#55555F" text-anchor="middle">읽고, 고치고, 돌려 본다</text>
+
+  <path d="M620,240 H654" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#ah2)"/>
+
+  <rect x="660" y="180" width="90" height="190" rx="12" fill="#FFF3DE" stroke="#C77A05" stroke-width="3"/>
+  <text x="705" y="255" font-size="17" font-weight="900" fill="#C77A05" text-anchor="middle">허용</text>
+  <text x="705" y="278" font-size="17" font-weight="900" fill="#C77A05" text-anchor="middle">모드</text>
+  <text x="705" y="150" font-size="15" font-weight="700" fill="#C77A05" text-anchor="middle">물어볼지 말지</text>
+  <text x="705" y="170" font-size="15" font-weight="700" fill="#C77A05" text-anchor="middle">여기서 갈린다</text>
+
+  <path d="M750,240 H784" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#ah2)"/>
+
+  <rect x="790" y="180" width="180" height="190" rx="14" fill="#EDEDEA" stroke="#55555F" stroke-width="2"/>
+  <text x="880" y="243" font-size="20" font-weight="900" fill="#15151A" text-anchor="middle">프로젝트 폴더</text>
+  <text x="880" y="272" font-size="14" fill="#55555F" text-anchor="middle">내 실제 파일들</text>
+  <text x="880" y="296" font-size="14" fill="#55555F" text-anchor="middle">여기가 일터다</text>
+
+  <path d="M880,370 V430 H510 V376" stroke="#7A3FD4" stroke-width="3" fill="none"
+        stroke-dasharray="9 7" marker-end="url(#ahd2)"/>
+  <text x="560" y="462" font-size="16" font-weight="700" fill="#7A3FD4">읽은 내용과 실행 결과가 돌아온다</text>
+</svg>
+</div>
+<p class="cap">왼쪽 셋은 에이전트가 일을 시작하기 전부터 붙어 있는 것들이고 오른쪽은 실제로 손을 대는 곳이에요.
+그 사이에 문이 하나 있어서 되돌리기 어려운 일일수록 먼저 물어보게 됩니다.</p>
+
+<h2>프로젝트라는 단위</h2>
+<p>에이전트는 <strong>폴더 하나</strong>를 붙잡고 일해요. 그 폴더가 곧 일감의 경계예요.
+「이 앱 만들기」가 폴더 하나, 「이력서 정리」가 또 다른 폴더 하나. 폴더를 옮기면 다른 일로 넘어간 셈이고 같은 폴더로 돌아오면 그 폴더에 적어 둔 것들을 다시 읽고 이어서 일합니다.</p>
+<p>처음 시작할 때 무슨 폴더에서 일할지를 정하는 게 첫 단추예요.</p>
+
+<h2>에이전트에 붙는 것 셋</h2>
+
+<h3>기본 지침</h3>
+<p>폴더 안에 놓아 두는 안내문이에요. 파일 이름은 보통 <strong>AGENTS.md</strong>.
+「이 프로젝트는 무엇이고, 무엇을 지켜야 하고, 어디부터 읽어라」를 적어 둡니다.
+에이전트는 이 폴더에서 일을 시작할 때마다 이걸 자동으로 읽어요. 매번 설명을 다시 하지 않아도 되는 이유가 이겁니다.</p>
+<p><strong>짧을수록 좋아요.</strong> 매번 실리는 글이라 길수록 매번 값을 치릅니다.</p>
+
+<h3>메모리</h3>
+<p>대화가 끝나면 에이전트는 그 대화를 잊어요. 그래서 다음 번에도 알아야 할 것은 파일로 적어 둡니다.
+「이 사람은 이런 걸 싫어한다」, 「이 서버 주소는 여기다」 같은 것들이요.
+지침이 「원래 이런 프로젝트다」라면, 메모리는 「일하다 알게 된 것」이에요.</p>
+
+<h3>스킬</h3>
+<p>접어 둔 설명서라고 보면 가장 가까워요. 「발표 자료 만들 때는 이렇게」, 「한국어 문장 다듬을 때는 이렇게」 같은
+절차를 미리 적어 두는 겁니다.</p>
+<p>재미있게도 <strong>평소에는 제목만 보여요.</strong> 스킬이 백 개 있어도 늘 실리는 건 제목 목록뿐이고 그중 지금 상황에 맞는 하나를 골랐을 때만 본문을 펼쳐 읽어요. 앞 지도에서 본 「매번 다시 건네진다」와
+같이 놓고 보면 왜 이렇게 만들었는지 바로 보입니다.</p>
+
+<h2>허용 모드 — 어디까지 알아서 하게 둘 것인가</h2>
+<div class="grid">
+  <div class="cell">
+    <h4>읽기만</h4>
+    <p>보기만 하고 아무것도 안 고쳐요. 남의 코드를 살펴보거나 뭐가 잘못됐는지 물어볼 때 씁니다.</p>
+  </div>
+  <div class="cell">
+    <h4>물어보고 하기</h4>
+    <p>고치기 전에 「이렇게 할게요」하고 한 번 묻습니다. 기본으로 두면 좋은 자리예요.</p>
+  </div>
+  <div class="cell">
+    <h4>알아서 하기</h4>
+    <p>안 묻고 진행해요. 빠른 대신, 잘못 가고 있어도 한참 뒤에 알게 됩니다.</p>
+  </div>
+</div>
+<p>여기에 하나 더 있는 게 <strong>계획 모드</strong>예요. 바로 일을 시작하지 않고 「이런 순서로 하겠다」는 계획을 먼저 내놓고 내가 승인해야 손을 댑니다. 처음 얼마간은 이걸 켜 두세요 — 에이전트가 내 말을 어떻게 알아들었는지가
+계획에 그대로 드러나거든요. 잘못 알아들었으면 코드 백 줄이 아니라 계획 다섯 줄만 버리면 됩니다.</p>
+
+<div class="note">
+<p><strong>기억해 둘 한 줄.</strong> 폴더 하나가 일감 하나고, 그 폴더에 적어 둔 지침과 메모리와 스킬이
+에이전트가 아는 전부예요. 사람이 바뀌어도 인수인계 문서가 있으면 일이 이어지는 것과 같습니다.</p>
+</div>
+
+<nav class="back"><a href="./">← 개념 지도 목록으로</a></nav>
+</div>
+</body>
+</html>
