@@ -216,8 +216,8 @@ NoLiMa는 답이 들어 있는 문장과 질문 사이에 겹치는 낱말이 �
 자동 압축은 사람이 고르지 않은 요약을 만들고 그 요약이 무엇을 빠뜨렸는지는 나중에야 알게 됩니다.</p>
 
 <h2>300k에 닿는 것은 창을 넓혀 쓸 때뿐</h2>
-<p>초기화 구간은 <strong>기본 창을 넓혀 쓰는 경우에만 만나는 자리</strong>예요.
-Claude Code에서 1M 창 모델을 쓰거나, Codex CLI에서 창을 넓혀 놓았을 때요.
+<p>초기화 구간은 <strong>창을 넓혀 쓰는 경우에만 닿는 자리</strong>예요.
+Claude Code의 1M 창 모델이거나, Codex CLI의 1M 확장이거나.
 어느 쪽이든 기본값 그대로라면 300k 앞에서 도구가 먼저 압축을 겁니다.</p>
 <p>Codex CLI의 기본 창은 272,000 토큰이고 그중 95%만 실제로 쓰여요 — 258,400입니다.
 자동 압축은 창의 90%를 넘지 못하게 걸려 있어서 ~244,800에서 돌고요.<sup><a href="#s9">9</a></sup><sup><a href="#s10">10</a></sup>
@@ -316,7 +316,7 @@ status_line = ["model-with-reasoning", "context-used", "five-hour-limit"]</code>
 <table>
 <thead><tr><th></th><th>Codex CLI</th><th>Claude Code</th></tr></thead>
 <tbody>
-<tr><td class="k">실효 창</td><td>기본 258,400 (272,000의 95%). 창을 넓히는 옵션이 있어요<sup><a href="#s14">14</a></sup></td><td>200K, 또는 1M (Fable 5·Sonnet 5)</td></tr>
+<tr><td class="k">실효 창</td><td>기본 258,400 (272,000의 95%) · 1M 확장 옵션<sup><a href="#s14">14</a></sup></td><td>200K, 또는 1M (Fable 5·Sonnet 5)</td></tr>
 <tr><td class="k">자동 압축이 도는 자리</td><td>기본 창에서 ~244,800 (창의 90%, 계산값)</td><td>200K 모델은 200,000, Sonnet 5의 1M은 ~967,000</td></tr>
 <tr><td class="k">얼마나 찼나</td><td><code>/status</code>, 표시줄의 <code>context-used</code>·<code>context-remaining</code></td><td><code>/context</code></td></tr>
 <tr><td class="k">압축</td><td><code>/compact</code></td><td><code>/compact</code>, <code>/compact &lt;초점&gt;</code></td></tr>
@@ -354,7 +354,7 @@ Claude Code는 지침과 메모리를 디스크에서 도로 실어요.
 <li id="s11">Codex CLI 설정 레퍼런스 — <a href="https://learn.chatgpt.com/docs/config-file/config-reference">learn.chatgpt.com/docs/config-file/config-reference</a></li>
 <li id="s12">openai/codex 이슈 #16068 — <a href="https://github.com/openai/codex/issues/16068">github.com/openai/codex/issues/16068</a></li>
 <li id="s13">BrainGrid, Context Rot: Why Your AI Agent Gets Dumber the Longer It Runs (2026-07-10) — 단일 글의 정성 관측 — <a href="https://www.braingrid.ai/blog/context-rot">braingrid.ai</a></li>
-<li id="s14">Codex의 1M 확장 — 공식 문서에도 changelog에도 자리가 없어요. OpenAI Codex 책임자 Tibo Sottiaux의 X 게시물 두 건(2026-08-16~17)이 1차 출처입니다. 게시물 전문은 열지 못했습니다 — <a href="https://x.com/thsottiaux/status/2089082893804896524">x.com/thsottiaux</a></li>
+<li id="s14">Codex의 1M 확장 — 공식 문서에도 changelog에도 자리가 없어요. OpenAI Codex 책임자 Tibo Sottiaux의 X 게시물 두 건(2026-08-16~17)이 1차 출처입니다. 게시물 전문은 열지 못했습니다 — <a href="https://x.com/thsottiaux/status/2089082893804896524">첫 게시물</a>, <a href="https://x.com/thsottiaux/status/2089143488696705077">이어진 게시물</a></li>
 </ol>
 
 <nav class="back"><a href="./">← 개념 지도 목록으로</a></nav>
