@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>컨텍스트와 지능의 스윗스팟</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+:root{
+  --bg:#FBFAF7; --card:#FFFFFF; --ink:#15151A; --mid:#55555F; --dim:#8A8A93;
+  --line:#E6E4DD; --blue:#2F5FE0; --blue-s:#EAF0FF; --violet:#7A3FD4; --violet-s:#F3ECFF;
+  --amber:#C77A05; --amber-s:#FFF3DE; --green:#0B7A5A; --green-s:#E3F5EE; --gray-s:#EDEDEA;
+  --red:#B3391F; --red-s:#FDE8E4;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px 120px}
+header.top{padding:72px 0 40px;border-bottom:1px solid var(--line);margin-bottom:56px}
+.kicker{font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--blue);margin:0 0 14px}
+h1{font-size:clamp(34px,5.4vw,52px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin:0 0 18px}
+.lede{font-size:20px;color:var(--mid);margin:0;max-width:60ch;line-height:1.7}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:900;letter-spacing:-.015em;margin:72px 0 14px}
+h3{font-size:19px;font-weight:700;margin:36px 0 8px}
+p{margin:0 0 18px;max-width:64ch}
+strong{font-weight:700}
+a{color:var(--blue)}
+.fig{margin:32px 0 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;min-width:860px}
+.cap{font-size:15px;color:var(--dim);margin:0 0 40px;max-width:64ch}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amber);
+  border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+.note p:last-child{margin-bottom:0}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:28px 0}
+.cell{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.cell h4{margin:0 0 8px;font-size:17px;font-weight:700}
+.cell p{margin:0;font-size:16px;color:var(--mid);line-height:1.7}
+.tw{overflow-x:auto;margin:26px 0}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:15px;background:var(--card);
+  border:1px solid var(--line);border-radius:12px}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.6}
+th{background:#F4F2EC;font-weight:700;font-size:14px;color:var(--mid)}
+tbody tr:last-child td{border-bottom:0}
+td.k{font-weight:700;color:var(--ink);white-space:nowrap}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;
+  background:var(--gray-s);padding:2px 6px;border-radius:5px}
+pre{background:#1B1B20;color:#E8E6E0;padding:16px 18px;border-radius:12px;overflow-x:auto;
+  font-size:14px;line-height:1.65;margin:22px 0}
+pre code{background:none;padding:0;color:inherit;font-size:14px}
+sup a{text-decoration:none;font-weight:700;font-size:12px;padding:0 1px}
+ol.src{font-size:15px;color:var(--mid);max-width:70ch;padding-left:24px;line-height:1.7}
+ol.src li{margin:0 0 10px}
+ol.src a{word-break:break-all}
+nav.back{margin:64px 0 0;padding-top:28px;border-top:1px solid var(--line);font-size:16px}
+nav.back a{color:var(--blue);font-weight:700;text-decoration:none}
+nav.back a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <p class="kicker">개념 지도 10</p>
+  <h1>컨텍스트와 지능의<br>스윗스팟</h1>
+  <p class="lede">창이 100만 토큰이라고 100만을 다 쓰면 안 돼요.
+  어디까지가 편안하고 어디서부터 손을 써야 하는지,
+  그리고 그 경계가 <strong>쓰는 도구마다 다르다</strong>는 것.</p>
+</header>
+
+<h2>왜 길어지면 둔해지나</h2>
+<p>Anthropic은 이 현상을 이렇게 적었어요.
+컨텍스트 창의 토큰 수가 늘어날수록 그 안에서 정보를 정확히 꺼내 오는 능력이 떨어진다고요.<sup><a href="#s1">1</a></sup>
+설명도 같이 붙어 있습니다. 토큰이 n개면 서로 따져야 할 짝은 n<sup>2</sup>개로 늘어나는데
+주의를 나눠 쓸 예산은 그대로라 얇게 펴진다는 거예요.
+훈련 자체가 짧은 시퀀스 위주라 긴 입력은 연습이 덜 된 자리이기도 하고요.</p>
+<p>이건 공급자 한 곳의 주장만은 아니에요. Chroma는 18개 모델을 같은 방식으로 재고
+「모델은 입력 길이가 달라져도 같은 성능을 유지하지 못한다」고 적었습니다.<sup><a href="#s2">2</a></sup>
+검색이나 단어 복제처럼 아주 단순한 과제에서도 그랬어요.
+재미있는 건 건초더미를 문장 단위로 뒤섞었을 때 18개가 전부 <strong>더 잘했다</strong>는 관측이에요.
+논리적으로 이어지는 긴 글이 오히려 불리했던 겁니다.</p>
+
+<h3>다만 벤치가 재는 자리는 코딩 세션이 아니다</h3>
+<p>NoLiMa는 「실효 길이」라는 말을 이렇게 정의해요.
+짧은 입력에서 받은 점수의 85%를 유지하는 가장 긴 입력 길이.<sup><a href="#s3">3</a></sup>
+그 값이 이렇습니다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>모델</th><th>주장하는 길이</th><th>실효 길이</th><th>32K에서의 점수</th></tr></thead>
+<tbody>
+<tr><td class="k">GPT-4o</td><td>128K</td><td>8K</td><td>69.7%</td></tr>
+<tr><td class="k">Claude 3.5 Sonnet</td><td>200K</td><td>4K</td><td>29.8%</td></tr>
+<tr><td class="k">Llama 3.3 70B</td><td>128K</td><td>2K</td><td>42.7%</td></tr>
+<tr><td class="k">Gemini 1.5 Pro</td><td>2M</td><td>2K</td><td>48.2%</td></tr>
+<tr><td class="k">Llama 3.1 405B</td><td>128K</td><td>2K</td><td>38.0%</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note">
+<p>이 표를 코딩 세션에 그대로 옮기면 틀려요.
+NoLiMa는 답이 들어 있는 문장과 질문 사이에 겹치는 낱말이 하나도 없도록 일부러 만든 적대적 설정이고,
+표에 있는 모델도 세대가 지났습니다. RULER<sup><a href="#s4">4</a></sup>나 Chroma도 마찬가지로
+「긴 글 속에서 바늘 찾기」를 재요.
+코딩 세션에서 벌어지는 일은 축이 달라요 — 읽은 파일과 검색 결과와 도구 출력이 <strong>끝까지 쌓인 채 남고</strong>,
+방해물의 밀도가 높고, 한 과제가 수십 분씩 이어집니다.<sup><a href="#s13">13</a></sup>
+그러니 「32K부터 무너진다」를 코딩 세션의 숫자로 읽으면 안 돼요.
+벤치는 방향을 알려 주지 눈금을 알려 주지 않습니다.</p>
+</div>
+
+<h2>구간과 하네스를 한 축에 겹쳐 놓으면</h2>
+<div class="fig">
+<svg viewBox="0 0 1000 600" role="img" aria-label="컨텍스트 토큰 축 위에 편안·유지·경고·초기화 네 구간을 띠로 놓고 그 아래에 Codex CLI와 Claude Code의 실효 창과 자동 압축 지점을 겹쳐 놓은 그림">
+  <defs>
+    <marker id="tri10" viewBox="0 0 10 10" refX="5" refY="9" markerWidth="9" markerHeight="9" orient="0">
+      <path d="M0,0 L10,0 L5,10 z" fill="#15151A"/>
+    </marker>
+  </defs>
+
+  <!-- 세로 안내선: 뒤에 깔린다 -->
+  <line x1="300" y1="120" x2="300" y2="500" stroke="#DDDBD4" stroke-width="2" stroke-dasharray="6 6"/>
+  <line x1="510" y1="120" x2="510" y2="500" stroke="#DDDBD4" stroke-width="2" stroke-dasharray="6 6"/>
+  <line x1="720" y1="120" x2="720" y2="500" stroke="#DDDBD4" stroke-width="2" stroke-dasharray="6 6"/>
+
+  <!-- 벤치 표시 -->
+  <rect x="94" y="60" width="131" height="16" rx="5" fill="#C9C7C0"/>
+  <text x="240" y="64" font-size="14" font-weight="700" fill="#55555F">벤치가 재는 실효 길이 2k~64k</text>
+  <text x="240" y="86" font-size="13" fill="#8A8A93">적대적 검색 과제의 값이다. 코딩 세션 수치가 아니다</text>
+
+  <!-- 네 구간 -->
+  <rect x="90" y="120" width="210" height="66" rx="8" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="195" y="150" font-size="20" font-weight="900" fill="#0B7A5A" text-anchor="middle">편안</text>
+  <text x="195" y="174" font-size="14" fill="#15151A" text-anchor="middle">~100k</text>
+  <text x="195" y="210" font-size="13" fill="#55555F" text-anchor="middle">그냥 진행한다</text>
+
+  <rect x="300" y="120" width="210" height="66" rx="8" fill="#EAF0FF" stroke="#2F5FE0" stroke-width="2"/>
+  <text x="405" y="150" font-size="20" font-weight="900" fill="#2F5FE0" text-anchor="middle">유지</text>
+  <text x="405" y="174" font-size="14" fill="#15151A" text-anchor="middle">100k~200k</text>
+  <text x="405" y="210" font-size="13" fill="#55555F" text-anchor="middle">끝나는 자리에서 문서화</text>
+
+  <rect x="510" y="120" width="210" height="66" rx="8" fill="#FFF3DE" stroke="#C77A05" stroke-width="2"/>
+  <text x="615" y="150" font-size="20" font-weight="900" fill="#C77A05" text-anchor="middle">경고</text>
+  <text x="615" y="174" font-size="14" fill="#15151A" text-anchor="middle">200k~300k</text>
+  <text x="615" y="210" font-size="13" fill="#55555F" text-anchor="middle">새 작업을 열지 않는다</text>
+
+  <rect x="740" y="120" width="220" height="66" rx="8" fill="#FDE8E4" stroke="#B3391F" stroke-width="2"/>
+  <text x="850" y="150" font-size="20" font-weight="900" fill="#B3391F" text-anchor="middle">초기화</text>
+  <text x="850" y="174" font-size="14" fill="#15151A" text-anchor="middle">300k+</text>
+  <text x="850" y="210" font-size="13" fill="#55555F" text-anchor="middle">문서 남기고 비운다</text>
+
+  <!-- Codex CLI -->
+  <text x="90" y="272" font-size="17" font-weight="900" fill="#15151A">Codex CLI</text>
+  <rect x="633" y="284" width="327" height="16" rx="5" fill="none" stroke="#8A8A93" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="955" y="272" font-size="13" font-weight="700" fill="#8A8A93" text-anchor="end">창을 넓히면 여기까지 (옵션)</text>
+  <rect x="90" y="284" width="543" height="16" rx="5" fill="#EAF0FF" stroke="#2F5FE0" stroke-width="2"/>
+  <line x1="633" y1="272" x2="633" y2="312" stroke="#2F5FE0" stroke-width="3"/>
+  <text x="628" y="272" font-size="14" font-weight="700" fill="#2F5FE0" text-anchor="end">기본 실효 창 258,400</text>
+  <line x1="604" y1="284" x2="604" y2="330" stroke="#15151A" stroke-width="2" stroke-dasharray="5 4"/>
+  <circle cx="604" cy="292" r="6" fill="#15151A"/>
+  <text x="592" y="348" font-size="13" font-weight="700" fill="#15151A" text-anchor="end">자동 압축 ~244,800 (계산값)</text>
+
+  <!-- Claude Code 200K -->
+  <text x="90" y="392" font-size="17" font-weight="900" fill="#15151A">Claude Code · 200K 창 모델</text>
+  <rect x="90" y="404" width="420" height="16" rx="5" fill="#F3ECFF" stroke="#7A3FD4" stroke-width="2"/>
+  <line x1="510" y1="392" x2="510" y2="432" stroke="#7A3FD4" stroke-width="3"/>
+  <circle cx="510" cy="412" r="6" fill="#7A3FD4"/>
+  <text x="521" y="418" font-size="14" font-weight="700" fill="#7A3FD4">200,000에서 자동 압축</text>
+
+  <!-- Claude Code 1M -->
+  <text x="90" y="460" font-size="17" font-weight="900" fill="#15151A">Claude Code · 1M 창 모델</text>
+  <text x="955" y="460" font-size="14" font-weight="700" fill="#7A3FD4" text-anchor="end">~967,000에서 자동 압축</text>
+  <rect x="90" y="472" width="860" height="16" rx="5" fill="#F3ECFF" stroke="#7A3FD4" stroke-width="2"/>
+  <circle cx="950" cy="480" r="6" fill="#7A3FD4"/>
+
+  <!-- 축 -->
+  <line x1="90" y1="524" x2="716" y2="524" stroke="#15151A" stroke-width="2.5"/>
+  <line x1="744" y1="524" x2="962" y2="524" stroke="#15151A" stroke-width="2.5"/>
+  <line x1="718" y1="534" x2="728" y2="514" stroke="#8A8A93" stroke-width="2.5"/>
+  <line x1="732" y1="534" x2="742" y2="514" stroke="#8A8A93" stroke-width="2.5"/>
+  <line x1="90" y1="518" x2="90" y2="530" stroke="#15151A" stroke-width="2.5"/>
+  <line x1="300" y1="518" x2="300" y2="530" stroke="#15151A" stroke-width="2.5"/>
+  <line x1="510" y1="518" x2="510" y2="530" stroke="#15151A" stroke-width="2.5"/>
+  <line x1="720" y1="518" x2="720" y2="530" stroke="#15151A" stroke-width="2.5"/>
+  <line x1="960" y1="518" x2="960" y2="530" stroke="#15151A" stroke-width="2.5"/>
+  <text x="90" y="548" font-size="14" font-weight="700" fill="#15151A" text-anchor="middle">0</text>
+  <text x="300" y="548" font-size="14" font-weight="700" fill="#15151A" text-anchor="middle">100k</text>
+  <text x="510" y="548" font-size="14" font-weight="700" fill="#15151A" text-anchor="middle">200k</text>
+  <text x="720" y="548" font-size="14" font-weight="700" fill="#15151A" text-anchor="middle">300k</text>
+  <text x="960" y="548" font-size="14" font-weight="700" fill="#15151A" text-anchor="middle">1M</text>
+  <text x="90" y="582" font-size="14" font-weight="700" fill="#55555F">컨텍스트에 쌓인 토큰</text>
+  <text x="730" y="582" font-size="13" fill="#8A8A93" text-anchor="middle">축이 여기서 접힌다</text>
+</svg>
+</div>
+<p class="cap">구간은 권고고 아래 두 줄은 도구가 실제로 그렇게 동작하는 지점이에요.
+축은 300k 뒤에서 접혀 있어요. 그러지 않으면 오른쪽 700k가 그림을 다 먹거든요.</p>
+
+<h2>네 구간과 그 근거의 등급</h2>
+<p>구간마다 근거의 무게가 달라요. 어디는 도구가 실제로 그 자리에서 동작하고
+어디는 커뮤니티에서 반복되는 관행일 뿐입니다. 섞어 쓰면 안 되니 그대로 적어 둡니다.</p>
+<div class="tw">
+<table>
+<thead><tr><th>구간</th><th>토큰</th><th>무엇을 하나</th><th>근거 등급</th></tr></thead>
+<tbody>
+<tr><td class="k">편안</td><td>~100k</td><td>아무것도 하지 않아요.</td>
+  <td><strong>추정.</strong> 벤치가 잰 실효 길이(2k~64k)보다 훨씬 위지만 그 벤치는 적대적 검색이라 눈금을 빌려 올 수 없어요.</td></tr>
+<tr><td class="k">유지</td><td>100k~200k</td><td>하던 일을 계속하되 한 덩이가 끝나면 그 자리에서 문서를 남깁니다.</td>
+  <td><strong>추정에 정성 관측이 얹힌 정도.</strong> 40메시지쯤에서 자기가 만든 함수를 잊더라는 단일 글의 관측<sup><a href="#s13">13</a></sup>과 「60%에서 압축하라」는 관행이 근거의 전부예요.</td></tr>
+<tr><td class="k">경고</td><td>200k~300k</td><td>지금 일이 끝나는 대로 문서를 남기고 비우거나 압축해요. 새 작업은 열지 않습니다.</td>
+  <td><strong>가장 단단해요.</strong> 커뮤니티가 반복하는 80% 선인 데다,
+  <em>하네스가 실제로 자동 압축을 돌리는 자리</em>가 여기예요 — 기본 설정의 Codex CLI는 ~244,800, Claude Code의 200K 창 모델은 200,000.</td></tr>
+<tr><td class="k">초기화</td><td>300k+</td><td>문서를 남기고 <code>/clear</code>. 압축은 세 번을 넘기지 않아요.</td>
+  <td><strong>추정이고 조건부.</strong> 아래 절을 보세요.</td></tr>
+</tbody>
+</table>
+</div>
+<p>경고 구간이 단단한 이유는 「모델이 200k에서 멀쩡하다가 갑자기 나빠져서」가 아니에요.
+그 위로 올라가면 <strong>무엇을 버릴지 도구가 대신 결정하기 시작해서</strong>예요.
+자동 압축은 사람이 고르지 않은 요약을 만들고 그 요약이 무엇을 빠뜨렸는지는 나중에야 알게 됩니다.</p>
+
+<h2>300k에 닿는 것은 창을 넓혀 쓸 때뿐</h2>
+<p>초기화 구간은 <strong>기본 창을 넓혀 쓰는 경우에만 만나는 자리</strong>예요.
+Claude Code에서 1M 창 모델을 쓰거나, Codex CLI에서 창을 넓혀 놓았을 때요.
+어느 쪽이든 기본값 그대로라면 300k 앞에서 도구가 먼저 압축을 겁니다.</p>
+<p>Codex CLI의 기본 창은 272,000 토큰이고 그중 95%만 실제로 쓰여요 — 258,400입니다.
+자동 압축은 창의 90%를 넘지 못하게 걸려 있어서 ~244,800에서 돌고요.<sup><a href="#s9">9</a></sup><sup><a href="#s10">10</a></sup>
+기본 설정으로 쓰는 한 300k는 지나갈 수 없는 벽 너머예요.</p>
+<p>다만 <strong>1M으로 넓히는 길이 있습니다.</strong>
+2026년 8월 중순에 OpenAI의 Codex 책임자가 X에 설정법을 공개했어요.<sup><a href="#s14">14</a></sup>
+전용 스위치가 따로 있는 게 아니라 설정 파일의 <code>model_context_window</code>와
+<code>model_auto_compact_token_limit</code>을 올리는 방식이고,
+계정마다 허용되는 천장이 달라서 어디까지 올라가는지는 각자 확인해야 해요.
+272,000 토큰을 넘긴 요청은 <strong>요청 전체가</strong> 입력 2배·출력 1.5배로 매겨지고요.
+공식 문서에는 아직 이 기능의 자리가 없습니다.</p>
+<p>Claude Code 쪽은 반대로 어긋나요. Fable 5나 Sonnet 5를 쓰면 창이 1M이라
+「100k~200k 유지」는 창의 10~20%밖에 안 됩니다.<sup><a href="#s5">5</a></sup><sup><a href="#s6">6</a></sup>
+퍼센트로 외운 규칙이 도구를 건너가면 이렇게 뒤집혀요.
+그래서 구간은 절대 토큰으로 두고, 내 도구의 눈금은 따로 확인하는 편이 맞습니다.</p>
+<div class="note">
+<p>244,800은 <strong>관측이 아니라 계산값</strong>이에요. 공식 문서에서 <code>/compact</code>의 정의를 찾지 못했고,
+90% 상한은 개인 블로그<sup><a href="#s9">9</a></sup>와 별개로 정리된 gist<sup><a href="#s10">10</a></sup>가 서로 맞아떨어진 것이 근거의 전부입니다.
+272,000과 95%는 도구에 실린 메타데이터라 확인된 값이에요.</p>
+</div>
+
+<h2>지금 얼마나 찼는지 보는 법</h2>
+<h3>Codex CLI</h3>
+<p><code>/status</code>를 치면 그 시점의 스냅숏이 나와요. 다만 한 번 보고 마는 값이라
+길게 가는 세션에서는 상태 표시줄에 상주시키는 편이 낫습니다.
+설정 파일 <code>~/.codex/config.toml</code>에 이렇게 적어요.</p>
+<pre><code>[tui]
+status_line = ["model-with-reasoning", "context-used", "five-hour-limit"]</code></pre>
+<p><code>context-used</code>는 쓴 쪽을, <code>context-remaining</code>은 남은 쪽(<code>% context left</code>)을 보여 줘요.
+둘 중 하나만 골라 두면 됩니다.
+표시줄에 넣을 수 있는 항목은 이것 말고도 여럿이에요 —
+<code>project-name</code>, <code>current-dir</code>, <code>git-branch</code>, <code>used-tokens</code>,
+<code>total-input-tokens</code>, <code>total-output-tokens</code>, <code>weekly-limit</code> 같은 것들.<sup><a href="#s11">11</a></sup></p>
+<div class="note">
+<p>자동 압축 문턱은 <code>model_auto_compact_token_limit</code>으로 조정해요.
+다만 <code>model_context_window</code>를 설정 파일에 직접 적으면
+첫 오버플로 이후 자동 압축이 영구히 깨지는 결함이 열려 있습니다.<sup><a href="#s12">12</a></sup>
+창을 넓히는 방법도 같은 키를 쓰니, 넓힐 생각이라면 이 결함을 알고 손대는 편이 좋아요.</p>
+</div>
+
+<h3>Claude Code</h3>
+<p><code>/context</code> 하나예요. 무엇이 얼마를 먹고 있는지 항목별로 갈라서 보여 줍니다.
+공식 문서는 <strong>새 세션을 열자마자 한 번</strong> 돌려 보라고 권해요 —
+대화를 시작하기도 전에 이미 차 있는 몫이 얼마인지가 그때 보이거든요.
+그 화면을 무엇으로 읽는지는 <a href="03-context-map.html">03장</a>에 있어요.</p>
+
+<h2>비우기와 압축을 가르는 두 물음</h2>
+<p>공식 안내와 실제로 쓰면서 굳은 습관이 서로 다른 것을 물어요. 충돌하지는 않고 겹쳐 놓을 수 있습니다.</p>
+<p>Anthropic 쪽 기준은 <strong>작업이 바뀌었나</strong>예요.
+새 일을 시작할 때 <code>/clear</code>, 같은 일 안에서 컨텍스트만 지저분해졌을 때 <code>/compact</code>.<sup><a href="#s7">7</a></sup>
+비우는 쪽에는 설명이 붙어 있어요 — 남아서 흐려지는 것이 없고 무엇을 넘길지 사람이 정확히 정한다고요.</p>
+<p>다른 하나는 <strong>문서가 남았나</strong>입니다. 이 세션이 알아낸 것이 이미 파일로 나가 있으면
+대화는 버려도 돼요. 이건 같은 회사가 「구조화된 노트」라고 부르는 처방과 같은 것이에요 —
+마일스톤이 뚜렷한 긴 작업에서는 압축보다 외부 파일에 적어 두는 쪽을 권합니다.<sup><a href="#s1">1</a></sup>
+세션을 끝낼 때 무엇을 어디에 내려놓는지는 <a href="09-session-wrapup.html">09장</a>에 있어요.</p>
+<p>두 물음을 겹치면 네 칸이 나와요.</p>
+<div class="tw">
+<table>
+<thead><tr><th></th><th>작업이 바뀌었다</th><th>같은 작업을 이어간다</th></tr></thead>
+<tbody>
+<tr><td class="k">문서가 남았다</td>
+  <td>가장 깨끗한 칸이에요. <code>/clear</code>로 비웁니다.</td>
+  <td>비워도 괜찮아요. 문서를 다시 읽고 이어가면 됩니다. 긴 세션 하나가 짧은 세션 여럿보다 비싸다는 게 공식 안내이기도 해요.<sup><a href="#s8">8</a></sup></td></tr>
+<tr><td class="k">문서가 없다</td>
+  <td>먼저 문서를 마감하고 그다음에 <code>/clear</code>. 순서를 바꾸면 알아낸 것이 같이 사라져요.</td>
+  <td><strong>가장 위험한 칸.</strong> 압축밖에 길이 없는데 압축이 가장 잘 실패하는 자리예요.</td></tr>
+</tbody>
+</table>
+</div>
+<p>오른쪽 아래 칸이 왜 위험한지는 실패 양상이 설명해 줘요.
+나쁜 압축은 <strong>모델이 앞으로 일이 어느 쪽으로 갈지 예측하지 못할 때</strong> 나옵니다.<sup><a href="#s7">7</a></sup>
+같은 작업을 이어가는데 남긴 글이 없다는 건 방향이 아직 정해지지 않았다는 뜻이라
+정확히 그 조건에 들어맞아요.
+게다가 「지나치게 공격적인 압축은 미묘하지만 결정적인 맥락을 잃게 만든다」는 경고도 있고요.<sup><a href="#s1">1</a></sup></p>
+<p>그 칸에 놓였을 때 손해를 줄이는 방법은 이렇습니다.</p>
+<div class="grid">
+  <div class="cell">
+    <h4>초점을 지정해 압축한다</h4>
+    <p><code>/compact 인증 버그 고치던 흐름 중심으로</code>처럼요.
+    맨 압축은 무엇이 중요한지 도구가 추측하지만 초점을 주면 사람이 고른 것이 남아요.</p>
+  </div>
+  <div class="cell">
+    <h4>압축 대신 갈라낸다</h4>
+    <p>Codex CLI에는 <code>codex fork</code>가 있어요. 지금 대화를 통째로 남긴 채 새 창을 엽니다.
+    길어질 것 같으면 압축보다 먼저 이쪽을 봐요.</p>
+  </div>
+  <div class="cell">
+    <h4>세 번째 압축은 하지 않는다</h4>
+    <p>첫 압축은 대개 무해하고 두 번째에서 결이 뭉개지고 세 번째쯤 되면 설계상의 결정을 놓칩니다.
+    측정이 아니라 반복되는 경험담이지만 방향은 일관돼요.</p>
+  </div>
+</div>
+
+<h2>내 도구에서는 무엇을 치나</h2>
+<div class="tw">
+<table>
+<thead><tr><th></th><th>Codex CLI</th><th>Claude Code</th></tr></thead>
+<tbody>
+<tr><td class="k">실효 창</td><td>기본 258,400 (272,000의 95%). 창을 넓히는 옵션이 있어요<sup><a href="#s14">14</a></sup></td><td>200K, 또는 1M (Fable 5·Sonnet 5)</td></tr>
+<tr><td class="k">자동 압축이 도는 자리</td><td>기본 창에서 ~244,800 (창의 90%, 계산값)</td><td>200K 모델은 200,000, Sonnet 5의 1M은 ~967,000</td></tr>
+<tr><td class="k">얼마나 찼나</td><td><code>/status</code>, 표시줄의 <code>context-used</code>·<code>context-remaining</code></td><td><code>/context</code></td></tr>
+<tr><td class="k">압축</td><td><code>/compact</code></td><td><code>/compact</code>, <code>/compact &lt;초점&gt;</code></td></tr>
+<tr><td class="k">비우기</td><td><code>/new</code>, <code>/clear</code></td><td><code>/clear</code></td></tr>
+<tr><td class="k">일부만 접기</td><td>없어요. 대신 <code>codex fork</code>로 갈라냅니다</td><td><code>/rewind</code>에서 여기서부터 / 여기까지 요약</td></tr>
+<tr><td class="k">문턱 바꾸기</td><td><code>model_auto_compact_token_limit</code><br><span style="color:#B3391F">창 크기 키는 자동 압축이 깨지는 결함이 열려 있어요</span><sup><a href="#s12">12</a></sup></td><td><code>/autocompact 500k</code>, 환경변수 <code>CLAUDE_CODE_AUTO_COMPACT_WINDOW</code></td></tr>
+<tr><td class="k">압축이 남기는 것</td><td>요약 하나와 최근 사용자 메시지 최대 20,000 토큰. 이전 응답과 도구 결과와 파일 내용은 전부 빠져요</td><td>요약에 더해 프로젝트 지침·메모리·계획을 디스크에서 다시 싣고 최근에 만진 파일 5개까지 다시 읽어요<sup><a href="#s5">5</a></sup></td></tr>
+</tbody>
+</table>
+</div>
+<p>표에서 눈여겨볼 칸은 맨 아래예요. 압축 뒤에 무엇이 살아남는지가 도구마다 다릅니다.
+Codex CLI는 요약과 사람이 한 말만 남기니 파일을 다시 읽어야 하고,
+Claude Code는 지침과 메모리를 디스크에서 도로 실어요.
+바꿔 말하면 <strong>디스크에 적어 둔 것만 압축을 건너 살아남는다</strong>는 점은 양쪽이 같습니다.</p>
+
+<div class="note">
+<p><strong>기억해 둘 한 줄.</strong> 퍼센트가 아니라 <em>토큰</em>으로 외우고,
+그 토큰이 내 도구의 어느 자리인지 한 번 확인해 둡니다.
+그리고 자동 압축이 도는 지점보다 먼저 사람이 손을 대요 —
+그 선을 넘으면 무엇을 버릴지 도구가 대신 정합니다.</p>
+</div>
+
+<h2>출처</h2>
+<ol class="src">
+<li id="s1">Anthropic, Effective context engineering for AI agents (2025-09-29) — <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">anthropic.com</a></li>
+<li id="s2">Chroma, Context Rot (2025-07-14) — <a href="https://www.trychroma.com/research/context-rot">trychroma.com</a></li>
+<li id="s3">NoLiMa (ICML 2025) — <a href="https://arxiv.org/html/2502.05167v3">arxiv.org/html/2502.05167v3</a></li>
+<li id="s4">RULER (2024) — <a href="https://arxiv.org/html/2404.06654">arxiv.org/html/2404.06654</a></li>
+<li id="s5">Claude Code 문서, 컨텍스트 창 — <a href="https://code.claude.com/docs/en/context-window">code.claude.com/docs/en/context-window</a></li>
+<li id="s6">Claude Code 문서, 모델 설정 — <a href="https://code.claude.com/docs/en/model-config">code.claude.com/docs/en/model-config</a></li>
+<li id="s7">Anthropic, Using Claude Code: session management and 1M context (2026-04-15) — <a href="https://claude.com/blog/using-claude-code-session-management-and-1m-context">claude.com</a></li>
+<li id="s8">Anthropic, Maximizing the value of your Claude Code sessions (2026-08-14) — <a href="https://claude.com/blog/maximizing-the-value-of-your-claude-code-sessions">claude.com</a></li>
+<li id="s9">Codex CLI context compaction architecture — 개인 블로그, 공식 아님 — <a href="https://codex.danielvaughan.com/2026/03/31/codex-cli-context-compaction-architecture/">codex.danielvaughan.com</a></li>
+<li id="s10">Codex CLI 실효 예산 정리 gist — 개인 정리 — <a href="https://gist.github.com/badlogic/cd2ef65b0697c4dbe2d13fbecb0a0a5f">gist.github.com/badlogic</a>, 창 경위는 <a href="https://codex.danielvaughan.com/2026/07/20/context-window-gap-codex-cli-gpt56-advertised-vs-effective-budget-compaction-strategy/">같은 블로그의 후속 글</a></li>
+<li id="s11">Codex CLI 설정 레퍼런스 — <a href="https://learn.chatgpt.com/docs/config-file/config-reference">learn.chatgpt.com/docs/config-file/config-reference</a></li>
+<li id="s12">openai/codex 이슈 #16068 — <a href="https://github.com/openai/codex/issues/16068">github.com/openai/codex/issues/16068</a></li>
+<li id="s13">BrainGrid, Context Rot: Why Your AI Agent Gets Dumber the Longer It Runs (2026-07-10) — 단일 글의 정성 관측 — <a href="https://www.braingrid.ai/blog/context-rot">braingrid.ai</a></li>
+<li id="s14">Codex의 1M 확장 — 공식 문서에도 changelog에도 자리가 없어요. OpenAI Codex 책임자 Tibo Sottiaux의 X 게시물 두 건(2026-08-16~17)이 1차 출처입니다. 게시물 전문은 열지 못했습니다 — <a href="https://x.com/thsottiaux/status/2089082893804896524">x.com/thsottiaux</a></li>
+</ol>
+
+<nav class="back"><a href="./">← 개념 지도 목록으로</a></nav>
+</div>
+</body>
+</html>
