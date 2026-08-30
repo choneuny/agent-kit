@@ -127,6 +127,8 @@ nav.back a:hover{text-decoration:underline}
 <p>폴더 안에 놓아 두는 안내문이에요. 파일 이름은 보통 <strong>AGENTS.md</strong>.
 「이 프로젝트는 무엇이고, 무엇을 지켜야 하고, 어디부터 읽어라」를 적어 둡니다.
 에이전트는 이 폴더에서 일을 시작할 때마다 이걸 자동으로 읽어요. 매번 설명을 다시 하지 않아도 되는 이유가 이겁니다.</p>
+<p>한국어 문체나 문서 두는 자리처럼 <strong>매번 지켜야 하는 것은 규칙</strong>으로 둡니다.
+스킬로 두면 부른 차례에만 펼쳐져요. 늘 지켜야 할 것을 스킬에 적으면 안 부른 날에는 없는 것과 같습니다.</p>
 <p><strong>짧을수록 좋아요.</strong> 매번 실리는 글이라 길수록 매번 값을 치릅니다.</p>
 
 <h3>메모리</h3>
@@ -135,11 +137,81 @@ nav.back a:hover{text-decoration:underline}
 지침이 「원래 이런 프로젝트다」라면, 메모리는 「일하다 알게 된 것」이에요.</p>
 
 <h3>스킬</h3>
-<p>접어 둔 설명서라고 보면 가장 가까워요. 「발표 자료 만들 때는 이렇게」, 「한국어 문장 다듬을 때는 이렇게」 같은
-절차를 미리 적어 두는 겁니다.</p>
+<p>접어 둔 설명서라고 보면 가장 가까워요. 「발표 자료 만들 때는 이렇게」,
+「그림 있는 설명 페이지를 만들 때는 이렇게」처럼 <strong>어쩌다 한 번 하는 일</strong>의 절차를 미리 적어 두는 겁니다.</p>
 <p><strong>평소에는 제목만 보여요.</strong> 스킬이 백 개 있어도 늘 실리는 건 제목 목록뿐이고,
 그중 지금 상황에 맞는 하나를 골랐을 때만 본문을 펼쳐 읽습니다.
 앞 장의 「매번 통째로 다시 건네진다」가 이유예요. 본문까지 늘 실으면 오늘 안 쓴 설명서의 값을 매 차례 치르게 되거든요.</p>
+
+<h2>이것들이 매 차례 어디에 실리나</h2>
+<p>앞 장에서 본 <strong>시스템 컨텍스트</strong> 자리에 셋이 나란히 들어갑니다.
+플러그인이 더해 놓은 도구 설명도 같은 자리예요.</p>
+<div class="fig">
+<svg viewBox="0 0 1000 536" role="img" aria-label="지침과 메모리와 스킬 목록과 도구 설명이 시스템 컨텍스트에 실리고 스킬 본문만 부를 때 대화에 붙는 그림">
+  <defs>
+    <marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#15151A"/>
+    </marker>
+    <pattern id="hatch02" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <rect width="9" height="9" fill="#FFFFFF"/>
+      <line x1="0" y1="0" x2="0" y2="9" stroke="#DEDCD5" stroke-width="3"/>
+    </pattern>
+  </defs>
+
+  <text x="30" y="34" font-size="16" font-weight="700" fill="#8A8A93">늘 실린다 — 오늘 안 써도 자리를 차지한다</text>
+
+  <rect x="30" y="52" width="270" height="70" rx="10" fill="#EAF0FF" stroke="#2F5FE0" stroke-width="2"/>
+  <text x="50" y="84" font-size="19" font-weight="900" fill="#2F5FE0">지침과 규칙</text>
+  <text x="50" y="108" font-size="14" fill="#15151A">AGENTS.md, 한국어 문체 규칙</text>
+
+  <rect x="30" y="134" width="270" height="70" rx="10" fill="#E3F5EE" stroke="#0B7A5A" stroke-width="2"/>
+  <text x="50" y="166" font-size="19" font-weight="900" fill="#0B7A5A">메모리</text>
+  <text x="50" y="190" font-size="14" fill="#15151A">일하다 알게 된 것</text>
+
+  <rect x="30" y="216" width="270" height="70" rx="10" fill="#F3ECFF" stroke="#7A3FD4" stroke-width="2"/>
+  <text x="50" y="248" font-size="19" font-weight="900" fill="#7A3FD4">스킬 이름과 한 줄 소개</text>
+  <text x="50" y="272" font-size="14" fill="#15151A">본문은 아직 아니다</text>
+
+  <rect x="30" y="298" width="270" height="70" rx="10" fill="#FFF3DE" stroke="#C77A05" stroke-width="2"/>
+  <text x="50" y="330" font-size="19" font-weight="900" fill="#C77A05">도구 설명</text>
+  <text x="50" y="354" font-size="14" fill="#15151A">플러그인이 더해 놓은 것도 여기</text>
+
+  <text x="30" y="418" font-size="16" font-weight="700" fill="#8A8A93">부를 때만 실린다</text>
+  <rect x="30" y="432" width="270" height="76" rx="10" fill="url(#hatch02)" stroke="#8A8A93" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="50" y="466" font-size="19" font-weight="900" fill="#15151A">스킬 본문</text>
+  <text x="50" y="490" font-size="14" fill="#15151A">고른 하나만 펼쳐진다</text>
+
+  <path d="M300,87 H340" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M300,169 H340" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M300,251 H340" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M300,333 H340" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M340,87 V333" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M340,215 H394" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#ah3)"/>
+  <path d="M300,470 H394" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#ah3)"/>
+
+  <rect x="400" y="110" width="240" height="210" rx="14" fill="#FFFFFF" stroke="#2F5FE0" stroke-width="3"/>
+  <text x="520" y="200" font-size="22" font-weight="900" fill="#2F5FE0" text-anchor="middle">시스템 컨텍스트</text>
+  <text x="520" y="232" font-size="15" fill="#55555F" text-anchor="middle">매번 똑같이 다시 실린다</text>
+
+  <rect x="400" y="418" width="240" height="104" rx="14" fill="#FFFFFF" stroke="#7A3FD4" stroke-width="3"/>
+  <text x="520" y="462" font-size="22" font-weight="900" fill="#7A3FD4" text-anchor="middle">지금까지의 대화</text>
+  <text x="520" y="492" font-size="15" fill="#55555F" text-anchor="middle">펼친 본문은 여기 붙는다</text>
+
+  <path d="M640,215 H690" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M640,470 H690" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M690,215 V470" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M690,340 H744" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#ah3)"/>
+
+  <rect x="750" y="265" width="220" height="150" rx="14" fill="#FFFFFF" stroke="#15151A" stroke-width="3"/>
+  <text x="860" y="335" font-size="30" font-weight="900" fill="#15151A" text-anchor="middle">모델</text>
+  <text x="860" y="368" font-size="15" fill="#55555F" text-anchor="middle">여기까지가 한 차례에</text>
+  <text x="860" y="390" font-size="15" fill="#55555F" text-anchor="middle">건네지는 전부다</text>
+</svg>
+</div>
+<p class="cap">01장 그림의 왼쪽 두 칸을 가까이서 본 것이에요.</p>
+<p>지침과 메모리와 도구 설명은 오늘 쓰든 안 쓰든 <strong>늘 실려요.</strong> 스킬만 다릅니다 —
+이름과 한 줄 소개는 늘 실리고 본문은 고른 차례에만 펼쳐집니다.
+스킬은 백 개를 두어도 평소 자리가 목록만큼이에요.</p>
 
 <h2>허용 모드 — 어디까지 알아서 하게 둘 것인가</h2>
 <div class="grid">
@@ -158,6 +230,24 @@ nav.back a:hover{text-decoration:underline}
 </div>
 <p>여기에 하나 더 있는 게 <strong>계획 모드</strong>예요. 바로 일을 시작하지 않고 「이런 순서로 하겠다」는 계획을 먼저 내놓고 내가 승인해야 손을 댑니다. 처음 얼마간은 이걸 켜 두세요 — 에이전트가 내 말을 어떻게 알아들었는지가
 계획에 그대로 드러나거든요. 잘못 알아들었으면 코드 백 줄이 아니라 계획 다섯 줄만 버리면 됩니다.</p>
+
+<h2>어디서 구해 오나</h2>
+<p>규칙도 스킬도 플러그인도 남이 만들어 둔 것을 가져다 씁니다.
+<strong>Claude Code</strong>에서는 <strong>/plugin</strong>이라고 치면 목록 화면이 열려요.
+공식 마켓플레이스는 처음 켤 때 저절로 등록되고 깃허브에 있는 남의 것은
+<strong>/plugin marketplace add 계정/저장소</strong>로 더합니다.
+<strong>Codex</strong>는 터미널에서 <strong>/plugins</strong>, ChatGPT 앱에서는 플러그인 탭이에요.</p>
+<p>깃허브에 공개된 저장소는 주소를 던지고 「이거 깔아 줘」라고 하면 에이전트가 설치 안내를 읽고 깔아 줘요.
+스킬 한 장은 <strong>SKILL.md</strong> 파일 하나가 본체라 정해진 폴더에 넣기만 해도 됩니다.
+명령 이름은 판마다 바뀌니 안 먹으면 설정 화면과 공식 문서를 보세요.</p>
+
+<h2>여기 적은 것은 빨리 낡아요</h2>
+<p>모델도 하네스도 몇 달 단위로 바뀝니다. 지금 Codex는 272,000 토큰을 받고 옵션을 켜면 100만까지 넓어지는데,
+이 수도 오래 안 가요. GPT-5.5와 GPT-5.4는 2026년 8월 31일에 Codex에서 물러납니다.</p>
+<p>더 크게 걸리는 것은 하네스가 사람이 손으로 만들던 일을 삼킨다는 점이에요.
+자동 압축과 메모리와 플러그인 화면이 잇달아 안으로 들어왔고 그때마다 손수 짠 스크립트가 쓸모를 잃었습니다.</p>
+<p>그러니 직접 만드는 것은 <strong>곧 낡는다는 것을 전제로</strong> 얇게 만드는 편이 낫습니다.
+하네스가 대신하기 시작하면 미련 없이 걷어내고요. 이 묶음에 든 것들도 예외가 아니에요.</p>
 
 <div class="note">
 <p><strong>기억해 둘 한 줄.</strong> 폴더 하나가 일감 하나고, 그 폴더에 적어 둔 지침과 메모리와 스킬이

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>어느 스킬을 쓸지 묻는 스킬</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+:root{
+  --bg:#FBFAF7; --card:#FFFFFF; --ink:#15151A; --mid:#55555F; --dim:#8A8A93;
+  --line:#E6E4DD; --blue:#2F5FE0; --blue-s:#EAF0FF; --violet:#7A3FD4; --violet-s:#F3ECFF;
+  --amber:#C77A05; --amber-s:#FFF3DE; --green:#0B7A5A; --green-s:#E3F5EE; --gray-s:#EDEDEA;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px 120px}
+header.top{padding:72px 0 40px;border-bottom:1px solid var(--line);margin-bottom:56px}
+.kicker{font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--blue);margin:0 0 14px}
+h1{font-size:clamp(34px,5.4vw,52px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin:0 0 18px}
+.lede{font-size:20px;color:var(--mid);margin:0;max-width:60ch;line-height:1.7}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:900;letter-spacing:-.015em;margin:72px 0 14px}
+h3{font-size:19px;font-weight:700;margin:36px 0 8px}
+p{margin:0 0 18px;max-width:64ch}
+strong{font-weight:700}
+.fig{margin:32px 0 12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;overflow-x:auto}
+.fig svg{display:block;width:100%;height:auto;min-width:720px}
+.cap{font-size:15px;color:var(--dim);margin:0 0 40px;max-width:64ch}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--amber);
+  border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0}
+.note p:last-child{margin-bottom:0}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:28px 0}
+.cell{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.cell h4{margin:0 0 8px;font-size:17px;font-weight:700}
+.cell p{margin:0;font-size:16px;color:var(--mid);line-height:1.7}
+nav.back{margin:64px 0 0;padding-top:28px;border-top:1px solid var(--line);font-size:16px}
+nav.back a{color:var(--blue);font-weight:700;text-decoration:none}
+nav.back a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <p class="kicker">개념 지도 12</p>
+  <h1>어느 스킬을<br>쓸지 묻는 스킬</h1>
+  <p class="lede">스킬은 남이 만들어 둔 것을 가져다 쓸 수 있어요. 그런데 한 묶음에 스무 개쯤 들어 있으면
+  이름을 외우는 일부터 짐이 됩니다. <strong>ask-matt</strong>는 그 짐을 대신 지는 스킬이에요.</p>
+</header>
+
+<h2>어떤 묶음인가</h2>
+<p><strong>mattpocock-skills</strong>는 Matt Pocock이라는 개발자가 자기 일에 매일 쓰는 스킬을 묶어 공개한 것이에요.
+분위기로 코드를 뽑아내는 쪽이 아니라 실제로 굴러가는 앱을 만드는 절차를 담았다고 스스로 밝히고 있습니다.
+스킬 하나하나가 작고 고쳐 쓰기 쉽게 되어 있어서 마음에 안 드는 부분은 뜯어 고쳐도 돼요.</p>
+
+<h2>까는 법</h2>
+<p><strong>Claude Code</strong>는 터미널에서 <strong>claude plugins install mattpocock-skills</strong>,
+세션 안에서라면 <strong>/plugin install mattpocock-skills</strong>입니다.
+공식 마켓플레이스에 올라와 있으니 마켓플레이스를 따로 더할 것이 없어요.</p>
+<p><strong>Codex를 비롯한 다른 하네스</strong>는 <strong>npx skills@latest add mattpocock/skills</strong>로 파일을 복사해 옵니다.
+가져올 스킬을 고르게 되는데 <strong>setup-matt-pocock-skills</strong>는 꼭 넣으라고 안내가 붙어 있어요.
+둘 다 깔면 스킬이 두 벌로 겹치니 한쪽만 고릅니다.</p>
+
+<h2>본체는 ask-matt 하나예요</h2>
+<p>묶음 안의 스킬을 다 외울 사람은 없습니다. 그래서 「지금 내 상황에는 어느 것이 맞나」를 묻는 스킬이 하나 들어 있어요.
+불러 놓고 상황을 말하면 알맞은 스킬과 그다음 순서를 짚어 줍니다.</p>
+
+<div class="fig">
+<svg viewBox="0 0 1000 420" role="img" aria-label="막막할 때는 ask-matt를 거쳐 알맞은 스킬로 가고 할 일이 뚜렷하면 그 스킬을 바로 부르는 두 갈래">
+  <defs>
+    <marker id="ah12" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#15151A"/>
+    </marker>
+    <marker id="ah12d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8A8A93"/>
+    </marker>
+  </defs>
+
+  <rect x="30" y="140" width="210" height="110" rx="12" fill="#FFF3DE" stroke="#C77A05" stroke-width="2"/>
+  <text x="52" y="180" font-size="19" font-weight="900" fill="#C77A05">막막할 때</text>
+  <text x="52" y="208" font-size="14" fill="#15151A">무엇부터 해야 할지</text>
+  <text x="52" y="230" font-size="14" fill="#15151A">모르겠다</text>
+
+  <path d="M240,195 H304" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#ah12)"/>
+
+  <rect x="310" y="125" width="230" height="140" rx="14" fill="#F3ECFF" stroke="#7A3FD4" stroke-width="3"/>
+  <text x="425" y="185" font-size="26" font-weight="900" fill="#7A3FD4" text-anchor="middle">ask-matt</text>
+  <text x="425" y="216" font-size="15" fill="#15151A" text-anchor="middle">상황을 듣고</text>
+  <text x="425" y="238" font-size="15" fill="#15151A" text-anchor="middle">맞는 것을 골라 준다</text>
+
+  <path d="M540,195 H580" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M580,100 V300" stroke="#15151A" stroke-width="2" fill="none"/>
+  <path d="M580,100 H614" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#ah12)"/>
+  <path d="M580,200 H614" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#ah12)"/>
+  <path d="M580,300 H614" stroke="#15151A" stroke-width="3" fill="none" marker-end="url(#ah12)"/>
+
+  <rect x="620" y="60" width="350" height="80" rx="10" fill="#FFFFFF" stroke="#C9C7C0" stroke-width="2"/>
+  <text x="644" y="94" font-size="17" font-weight="900" fill="#15151A">생각을 캐물어 다듬는다</text>
+  <text x="644" y="120" font-size="14" fill="#55555F">grill-with-docs</text>
+
+  <rect x="620" y="160" width="350" height="80" rx="10" fill="#FFFFFF" stroke="#C9C7C0" stroke-width="2"/>
+  <text x="644" y="194" font-size="17" font-weight="900" fill="#15151A">버그를 끝까지 파고든다</text>
+  <text x="644" y="220" font-size="14" fill="#55555F">diagnosing-bugs</text>
+
+  <rect x="620" y="260" width="350" height="80" rx="10" fill="#FFFFFF" stroke="#C9C7C0" stroke-width="2"/>
+  <text x="644" y="294" font-size="17" font-weight="900" fill="#15151A">테스트부터 쓰고 만든다</text>
+  <text x="644" y="320" font-size="14" fill="#55555F">tdd</text>
+
+  <path d="M135,250 V372 H795 V344" stroke="#8A8A93" stroke-width="3" fill="none"
+        stroke-dasharray="9 7" marker-end="url(#ah12d)"/>
+  <text x="180" y="400" font-size="16" font-weight="700" fill="#55555F">할 일이 뚜렷하면 거치지 않고 그 스킬을 바로 부른다</text>
+</svg>
+</div>
+<p class="cap">점선이 라우터를 건너뛰는 길이에요.</p>
+
+<h2>필요할 때만 부르세요</h2>
+<p>이 스킬은 스스로 나서지 않게 만들어져 있어요. 에이전트가 알아서 펼치는 법이 없고 내가 이름을 부를 때만 열립니다.
+그렇게 해 둔 이유가 있어요.</p>
+<p>부를 자리는 <strong>막막할 때</strong>입니다. 무엇부터 손대야 할지 모르겠을 때, 덩어리가 커서 어떻게 쪼갤지 안 보일 때요.
+반대로 할 일이 뚜렷한 날에 습관처럼 부르면 절차만 무거워져요.
+고칠 줄 한 줄이 정해져 있는데 「어느 흐름으로 갈까요」부터 시작하면 그 대화가 통째로 낭비입니다.</p>
+
+<h2>나머지에는 이런 것들이 있어요</h2>
+<p>계획을 캐묻는 것, 명세와 티켓으로 쪼개는 것, 테스트부터 쓰며 만드는 것, 버그를 파고드는 것,
+바뀐 코드를 두 갈래로 검토하는 것, 병합 충돌을 풀어 가는 것, 사람만 할 수 있는 절차를 안내문으로 만드는 것.
+하나씩 외우려 들지 말고 필요해지면 ask-matt에게 물으세요.</p>
+
+<div class="note">
+<p><strong>기억해 둘 한 줄.</strong> 스킬 이름은 외우지 말고 물어보면 됩니다.
+그 물음도 막막한 날에만 꺼내세요.</p>
+</div>
+
+<nav class="back"><a href="./">← 개념 지도 목록으로</a></nav>
+</div>
+</body>
+</html>
