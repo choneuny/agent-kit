@@ -1,8 +1,6 @@
 ---
-name: korean-writing
-description: 한국어 문서·보고·README를 쓸 때 처음부터 적용하는 문체(해요체 통일)와 AI 티 금지 목록. 한국어 산출물을 만들기 전에 읽는다.
+tools: [claude, codex]
 ---
-
 
 # 한국어 글쓰기 원칙
 

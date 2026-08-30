@@ -8,7 +8,7 @@
 
 ## 어디를 읽나
 
-- 규칙: `~/.claude/rules` → `~/.agents/rules` 심링크. realpath로 중복을 걷고 정본 경로를 적는다. `common/`만 세션에 실린다(이 세션 관측 기준 — 언어별 디렉터리가 언제 실리는지는 미확인).
+- 규칙: `~/.claude/rules`. 항목이 심링크면 realpath로 중복을 걷고 원본 경로를 적는다. `common/`만 세션에 실린다(이 세션 관측 기준 — 언어별 디렉터리가 언제 실리는지는 미확인).
 - 메모리: cwd가 아니라 **가장 가까운 상위 프로젝트**의 `~/.claude/projects/<경로-변환>/memory/MEMORY.md`가 실린다. cwd에서 위로 올라가며 처음 맞는 것을 쓰고, 프로젝트 `CLAUDE.md`·`AGENTS.md`도 같은 층에서 같이 담는다(`/context`의 Memory files 표가 그 넷을 포함한다).
 - 플러그인: `~/.claude/plugins/cache/<마켓>/<플러그인>/<버전>/` 아래 `skills/`·`commands/`·`agents/`·`.claude-plugin/plugin.json`(훅은 `hooks` 필드가 가리키는 JSON). **캐시를 훑어 세지 않는다** — superpowers가 6.2.0·6.3.0 두 판으로 남아 이중 계상된다. 설치 정본은 `installed_plugins.json`의 `installPath`, 활성 여부는 `settings.json`의 `enabledPlugins`(`<플러그인>@<마켓>`).
 - 훅: `settings.json`에 등록된 것만 켜진 것. `~/.claude/hooks/`·`~/.claude/scripts/hooks/`의 나머지는 미등록 잔해다.
@@ -20,15 +20,15 @@
 - 훅의 비용은 **출력**이다. 세션에 실제로 주입된 본문은 트랜스크립트 앞부분의
   `attachment.type == "hook_success"` 레코드에 통째로 남는다 — `content`가 비면
   `stdout`의 `hookSpecificOutput.additionalContext`가 주입된 몫이다. 실행 없이 재는 가장 싼 길이고,
-  파일을 쓰는 훅(healthcheck·session-end-save)은 이 길로만 잰다.
+  파일을 쓰는 훅은 실행하지 말고 이 길로만 잰다.
 - 실행해도 되는 것은 읽기 전용 훅뿐이다. ponytail은 플래그 파일을 쓰므로 훅 자체 대신
   `hooks/ponytail-instructions.js`의 `getPonytailInstructions(mode)`를 직접 부른다.
 - **SubagentStart 훅 출력은 세션 합계 밖이다.** 서브에이전트마다 따로 주입되므로 SessionStart와
   같은 본문을 두 번 더하면 그 플러그인이 두 배로 보인다.
-- `session-start-healthcheck.sh`의 평상시 출력은 배지 한 줄(15토큰)이지만, `/refresh` 스냅샷이
-  대기 중이면 그 본문 전체가 같은 훅으로 들어온다. 한 세션 실측을 상시값으로 읽지 않는다.
-- `session-end-save.sh`(PreCompact·SessionEnd)의 출력은 세션 컨텍스트에 안 실린다 — 트랜스크립트에
-  주입 기록이 없다. 이 훅의 값은 컨텍스트가 아니라 `/learn-eval`·`/save-session` 자동 실행이다.
+- SessionStart 훅 하나가 평소에는 한 줄만 내놓다가 `/refresh` 스냅샷이 대기 중이면 그 본문 전체를
+  같은 자리로 흘려보내기도 한다. 한 세션 실측을 상시값으로 읽지 않는다.
+- 훅 가운데 PreCompact·SessionEnd에 걸린 것의 출력은 세션 컨텍스트에 안 실린다 — 트랜스크립트에
+  주입 기록이 없다. 그런 훅의 값은 컨텍스트가 아니라 그것이 자동으로 돌리는 일이다.
 - 플러그인 훅은 `plugin.json`의 `hooks` 필드만이 아니라 `hooks/hooks.json`으로도 걸린다 —
   superpowers가 그 꼴이라 재고에 안 잡힌 채 세션마다 1.4k를 붓는다.
 
@@ -50,21 +50,20 @@
 - **`isSidechain`은 이 하네스에서 언제나 false다**(전수 확인: true 0건, false 235,191건). 서브에이전트 판별은 이 필드가 아니라
   파일이 `subagents/` 아래 있는가로 한다. 서브 메타(`agent-*.meta.json`)에 `agentType`·`parentAgentId`·`model`이 있다.
 - 호출자 구분(`by_30d`)은 셋이다. 서브에이전트 파일이면 subagent · 훅이 띄운 헤드리스 세션이면 hook · 나머지는 human.
-  훅 세션은 첫 열 줄에 `session-end-save.sh`가 넣는 프롬프트 문구(`Automated hook — no user confirmation` 또는
-  `and run /save-session`)로 알아본다. `/learn-eval` 179회·`/save-session` 99회가 전부 그 세션에서 나온다 — 사람이 부른 적이 없다.
+  훅 세션은 첫 열 줄에 훅이 넣은 프롬프트 문구(`Automated hook — no user confirmation` 꼴)로 알아본다.
+  훅이 자동으로 부르는 명령은 호출 수가 크게 나오지만 사람이 부른 적은 없을 수 있다.
 - 트랜스크립트를 줄 단위로 읽는다(634개 0.70GB에 1.4초). mtime은 전부 최근이라 걸러 주지 않는다 — 타임스탬프로만 자른다.
 - 세는 것: Skill 도구의 `skill`, 사용자 입력의 `/name`, Agent 도구의 `subagent_type`, `mcp__<서버>__<도구>`. 내장 슬래시 명령(`/clear`·`/model` 등)은 뺀다. 서브에이전트 트랜스크립트도 포함한다(서브가 부른 것도 컨텍스트를 먹었다).
 - 도구 인자 JSON은 콜론 뒤 공백이 없다(`"skill":"docs-upkeep"`). `json.dumps` 출력을 grep 패턴으로 쓰면 0이 나온다.
 - 플러그인 MCP 도구는 `mcp__plugin_<플러그인>_<서버>__<도구>`라 재고의 `<플러그인>:<서버>` 이름과 맞추려면 변환이 필요하다(미결).
-- `skill-stocktake/scripts/scan.sh`의 호출 수는 이 기계에 없는 `~/.claude/observations.jsonl`을 읽는다 — 대조 상대가 못 된다. `usage.py --check`는 grep으로 세 항목을 독립 재집계해 맞춘다.
+- `usage.py --check`는 grep으로 세 항목을 독립 재집계해 맞춘다. 다른 도구의 호출 수와 대조하려면 그 도구가
+  같은 원천을 읽는지부터 본다 — 읽는 파일이 다르면 대조 상대가 못 된다.
 
 ## 셸 함정
 
-- `~/.claude/skills`는 `~/.agents/skills`로 가는 스킬별 심링크다. grep 대상을 모을 때 realpath로
+- `~/.claude/skills` 아래 항목은 스킬별 심링크일 수 있다. grep 대상을 모을 때 realpath로
   걷지 않으면 같은 파일이 두 번 잡힌다.
-- 이 세션 셸에서 `node -e`는 권한에 막힌다 — 임시 `.js` 파일로 써서 `node <파일>`로 돌린다.
-- 이 세션 셸의 `grep`은 함수로 덮여 있어 `-m`·`-oF`가 죽는다. 트랜스크립트 훑기는 파이썬이나 `bash -c`.
-- 헤드리스 크롬은 `libnss3`·`libnspr4`가 시스템에 없어 그냥은 안 뜨지만 sudo 없이 된다 — `apt-get download --print-uris`로 .deb 주소를 받아 curl로 받고 `dpkg-deb -x`로 스크래치패드에 푼 뒤 `LD_LIBRARY_PATH=<그곳>/usr/lib/x86_64-linux-gnu`로 띄운다(2026-08-23 실측).
+- 셸이 `grep`을 함수로 덮어 두면 `-m`·`-oF`가 죽는다. 트랜스크립트 훑기는 파이썬이나 `bash -c`로.
 - Vite SSR 산출물은 패키지 안(`--outDir dist-ssr`)에 뽑아야 돌아가고, `render()`는 동기라 fetch로 채우는 표는 안 나온다. 행 수 검증은 `ui/check.mjs`(합치기 함수를 node로 직접 호출).
 
 ## 설치 시각
@@ -72,15 +71,15 @@
 `installed.py`가 출처 넷을 우선순위대로 밟고 `confidence`에 어느 출처였는지 적는다. 못 구하면 `null` — 없는 척하지 않는다.
 
 - `plugin-meta` — `~/.claude/plugins/installed_plugins.json`의 `installedAt`. 플러그인이 준 항목(스킬·훅·MCP)이 전부 여기서 온다.
-- `agents-git` — `git -C ~/.agents log --diff-filter=A --reverse --format=@%aI --name-only` 한 번으로 전 파일의 첫 커밋을 모은다.
-  파일마다 `git log`를 돌리면 121번을 돈다.
+- `agents-git` — 규칙·스킬이 git 저장소에 살면 `git log --diff-filter=A --reverse --format=@%aI --name-only`
+  한 번으로 전 파일의 첫 커밋을 모은다. 파일마다 `git log`를 돌리면 파일 수만큼 돈다.
 - `birth-time` — `stat -c %W`. ext4가 이 기계에서 birth time을 기록한다(실측). **파이썬에는 리눅스용 `st_birthtime`이 없다** —
   `os.stat()`에 그 필드가 아예 안 붙으므로 셸의 `stat`을 쓴다.
 - `transcript-first` — 트랜스크립트에 `mcp__<서버>__`가 처음 나온 날. MCP 서버는 파일이 없어 이 길뿐이다.
 
 읽을 때 조심할 것:
-- **바닥이 두 개 있다.** `~/.agents`는 2026-08-14에 정본으로 세워졌고 `~/.claude` 파일 다수의 birth time은 2026-07-03(devbox 이사로
-  복사된 날)이다. 그보다 이른 날짜는 나올 수 없다 — 그 날짜는 「이 기계에 온 날」이지 「만든 날」이 아니다.
+- **바닥이 있다.** 규칙 저장소를 세운 날과 `~/.claude` 파일이 이 기계에 복사된 날보다 이른 날짜는 나오지 않는다.
+  그 날짜는 「이 기계에 온 날」이지 「만든 날」이 아니다.
 - **MCP 서버에 birth time을 쓰지 마라.** 서버의 `path`는 공용 `~/.claude.json`이라 그 파일을 마지막으로 고쳐 쓴 날이 나온다
   (실제로 전부 오늘로 찍혔다). 서버는 트랜스크립트 첫 등장으로만 잰다.
 - 트랜스크립트 첫 등장은 **처음 쓴 날**이지 설치한 날이 아니다. 설치해 두고 안 쓰다 나중에 처음 부르면 늦게 잡힌다.

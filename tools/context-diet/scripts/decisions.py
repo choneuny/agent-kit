@@ -498,7 +498,7 @@ def build_cards() -> list[dict]:
     # ── 2. hook output ────────────────────────────────────────────────────────
     hook_cards = [
         ("hook:SessionStart:pseudo-honcho-context",
-         "세션마다 붓는 「durumii에 대해 확인된 사실」 블록을 둘지",
+         "세션 시작 훅이 넣는 사용자 사실 블록을 둘지",
          "~/.local/share/pseudo-honcho/insights.jsonl (정제본)",
          "필요할 때 파일을 직접 읽는다"),
         ("hook:SessionStart:healthcheck",
@@ -547,8 +547,8 @@ def build_cards() -> list[dict]:
         body = read_text(mem["path"])
         lines = [l for l in body.splitlines() if l.strip().startswith("- ")]
         cards.append(card(
-            id="memory:MEMORY.md(sketches)", group=3,
-            title="sketches 메모리 색인 54줄 중 무엇을 지울지", unit="메모리 파일",
+            id="memory:MEMORY.md", group=3,
+            title=f"메모리 색인 {len(lines)}줄 중 무엇을 지울지", unit="메모리 파일",
             tokens={"reclaim": t, "basis": basis,
                     "parts": [{"name": f"{len(lines)}줄 색인", "tokens": t}]},
             usage=None,
@@ -655,7 +655,7 @@ def build_cards() -> list[dict]:
         if not c["tokens"]["reclaim"]:
             c["tokens"]["basis"] = "estimated"
             c["note"] = ((c.get("note") or "") +
-                         " · 이 세션(sketches)에서는 안 실린다 — /context 실측에 행이 없다")
+                         " · 이 세션에서는 안 실린다 — /context 실측에 행이 없다")
         cards.append(c)
 
     # ── 7. plugins ────────────────────────────────────────────────────────────

@@ -205,8 +205,9 @@ def load_json(p: Path):
 
 
 def collect_rules(coef) -> list[dict]:
-    """Rules live canonically in ~/.agents/rules; ~/.claude/rules is a symlink to it.
-    Only common/ is loaded into every session (observed in the live system prompt)."""
+    """Rules may live in ~/.claude/rules or in a separate repo it symlinks into.
+    Both roots are walked and realpath dedupes them. Only common/ is loaded into
+    every session (observed in the live system prompt)."""
     items, seen = [], set()
     for base in (CLAUDE / "rules", AGENTS / "rules"):
         if not base.exists():

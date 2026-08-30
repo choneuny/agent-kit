@@ -7,17 +7,17 @@
 Source order (best evidence first), recorded per item in `confidence`:
 
   plugin-meta      ~/.claude/plugins/installed_plugins.json `installedAt`
-  agents-git       first commit that added the file to ~/.agents (the canonical
-                   repo for rules and skills)
-  birth-time       filesystem birth time (`stat -c %W`; ext4 on this box records
-                   it — python has no st_birthtime on Linux, hence the shell)
+  agents-git       first commit that added the file to the rules/skills repo, when
+                   rules and skills live in one
+  birth-time       filesystem birth time (`stat -c %W`; ext4 records it — python
+                   has no st_birthtime on Linux, hence the shell)
   transcript-first the day the name first shows up in ~/.claude/projects/*.jsonl
                    (MCP servers have no file: `mcp__<server>__` is the only trace)
   none             nothing found — the field stays null rather than guessing
 
-Floors, not birthdays: ~/.agents was seeded on 2026-08-14 and ~/.claude was
-copied to this box on 2026-07-03 (devbox migration), so git and birth times
-never predate those. An item older than its store reads as that store's date.
+Floors, not birthdays: neither store predates the day it was created or copied
+onto this machine, so git and birth times never go earlier than that. An item
+older than its store reads as that store's date.
 """
 from __future__ import annotations
 
@@ -188,10 +188,10 @@ def build() -> dict:
             "transcript-first": f"{scanned}/{files} transcripts scanned for mcp__<server>__",
         },
         "caveats": [
-            "~/.agents는 2026-08-14에 정본으로 세워졌다 — git 첫 커밋은 그날이 바닥이고 "
-            "규칙이 실제로 태어난 날은 그보다 이를 수 있다",
-            "~/.claude 파일 다수의 birth time은 2026-07-03(devbox 이사로 복사된 날)이다 — "
-            "설치일이 아니라 이 기계에 온 날이다",
+            "규칙 저장소를 세운 날이 git 첫 커밋의 바닥이다 — 규칙이 실제로 태어난 날은 "
+            "그보다 이를 수 있다",
+            "~/.claude 파일의 birth time은 이 기계에 복사된 날일 수 있다 — 설치일이 아니라 "
+            "이 기계에 온 날이다",
             "MCP 서버는 파일이 없어 트랜스크립트 첫 등장만 있다 — 그것은 처음 쓴 날이지 "
             "설치한 날이 아니다(설치 후 안 쓰다 나중에 처음 부르면 늦게 잡힌다)",
         ],
@@ -211,7 +211,7 @@ def check(doc: dict) -> int:
         if (i["installed_at"] is None) != (i["source"] is None):
             print(f"FAIL 시각과 출처가 어긋난다: {i['kind']}:{i['name']}")
             bad += 1
-    # priority: an ~/.agents file with a git date must not have fallen back to birth
+    # priority: a repo file with a git date must not have fallen back to birth
     for i in items:
         if i["source"] == "birth-time" and i["path"] and str(i["path"]).startswith(str(AGENTS_REPO)):
             r = subprocess.run(["git", "-C", str(AGENTS_REPO), "log", "--diff-filter=A",

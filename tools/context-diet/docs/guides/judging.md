@@ -2,7 +2,7 @@
 
 범위: `scripts/judge.py`로 항목을 묶어 서브에이전트에 판정시키고 `data/judgments.json`으로 모으는 절차.
 여는 때: 재고가 바뀌어 판정을 다시 돌릴 때, 판정 품질이 의심될 때.
-다루지 않는 것: 판정 어휘의 원형(`~/.agents/skills/skill-stocktake` Phase 2·4), 끄기 실행.
+다루지 않는 것: 끄기 실행(`guides/disabling.md`).
 전제: 판정은 비용(토큰)·호출 수가 아니라 **본문을 읽은 근거**로 낸다. 비용과 호출 수는 재료다.
 
 ## 절차

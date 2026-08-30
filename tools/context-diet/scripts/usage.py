@@ -4,11 +4,9 @@
 Reads ~/.claude/projects/*/*.jsonl line by line (never whole-file) and counts
 7d/30d calls for skills, commands, agents and MCP tools, writing data/usage.json.
 
-Counting method (kept parallel to ~/.agents/skills/skill-stocktake/scripts/scan.sh):
-scan.sh derives use_7d/use_30d by bucketing timestamped observation records into
-UTC "N days ago" cutoff windows and counting one hit per matching record. Same
-here — the only change is the source (transcripts, which actually exist; scan.sh's
-~/.claude/observations.jsonl does not) and the match key (item name, not file path).
+Counting method: bucket timestamped records into UTC "N days ago" cutoff windows
+and count one hit per matching record. The source is the transcripts themselves
+and the match key is the item name, not a file path.
 
 Usage:
     uv run scripts/usage.py [--check] [--days-cap 30]
@@ -33,7 +31,7 @@ INVENTORY = ROOT / "data" / "inventory.json"
 WINDOWS = [7, 30]
 BY = ("human", "hook", "subagent")
 
-# A hook-spawned headless session (`claude -p` from session-end-save.sh) opens
+# A hook-spawned headless session (`claude -p` from a session-end hook) opens
 # with this prompt — the marker that its calls were not typed by a person.
 HOOK_SESSION_MARKERS = (
     "Automated hook — no user confirmation",
@@ -238,8 +236,8 @@ def main() -> int:
         "subagent_transcripts": subagent_files,
         "note_by": (
             "by_30d splits the 30d count by caller: subagent = isSidechain record, "
-            "hook = a headless session a hook started (session-end-save.sh runs "
-            "`claude -p ... /learn-eval` and `/save-session`), human = everything else."
+            "hook = a headless session a hook started (a session-end hook running "
+            "`claude -p ... /<command>`), human = everything else."
         ),
         "note_hooks": (
             f"hooks are not counted: they fire per session, not per call, and their "

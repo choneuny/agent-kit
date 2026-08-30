@@ -16,6 +16,7 @@ those numbers are reused from decisions.json (see decision-cards.md).
 from __future__ import annotations
 
 import json
+import os.path
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -217,7 +218,7 @@ def layer_mcp() -> dict:
         units["ours"].append(node(
             f"mcp:{server}", server, "mcp", 0, basis="estimated", unit_id=f"mcp:{server}",
             judge_key=("mcp", server), usage_key=("mcp", server),
-            note="이 세션(sketches)에서는 안 실린다 — /context 실측에 행이 없다"))
+            note="이 세션에서는 안 실린다 — /context 실측에 행이 없다"))
     return group("layer:mcp", "MCP 도구", "layer", [
         group("unit:mcp-ours", "우리가 설정한 서버", "unit", units["ours"]),
         group("unit:mcp-builtin", "하네스 내장 서버", "unit", units["builtin"], fixed=True,
@@ -227,6 +228,22 @@ def layer_mcp() -> dict:
     ])
 
 
+def dir_label(nodes: list[dict], fallback: str) -> str:
+    """Where these rows actually live, written with a leading ~.
+
+    Taken from the rows themselves rather than hardcoded, so a machine that keeps
+    its rules or skills somewhere else gets its own path on the screen.
+    """
+    parents = sorted({str(Path(n["path"]).parent) for n in nodes if n.get("path")})
+    if not parents:
+        return fallback
+    common = parents[0] if len(parents) == 1 else os.path.commonpath(parents)
+    home = str(HOME)
+    if common in (home, "/", ""):        # rows straddle two roots — no useful shared path
+        return fallback
+    return "~" + common[len(home):] if common.startswith(home) else common
+
+
 def memory_label(path: str, kind: str, name: str) -> str:
     """Human name for a memory row — the id keeps the slug, the screen does not."""
     if kind != "memory":
@@ -234,7 +251,7 @@ def memory_label(path: str, kind: str, name: str) -> str:
     q = Path(path)
     if q.name == "MEMORY.md":           # ~/.claude/projects/<slug>/memory/MEMORY.md
         return f"MEMORY.md ({q.parent.parent.name.rstrip('-').split('-')[-1]})"
-    return f"{q.parent.name}/{q.name}"  # sketches/AGENTS.md
+    return f"{q.parent.name}/{q.name}"  # <project>/AGENTS.md
 
 
 def layer_memory() -> dict:
@@ -262,7 +279,7 @@ def layer_memory() -> dict:
                 "Merge", "Improve", "Update", "Retire") else "rule:keep-as-is"
             rules.append(n)
         elif m["type"] == "AutoMem" or "/memory/MEMORY.md" in path:
-            n["unit_id"] = "memory:MEMORY.md(sketches)"
+            n["unit_id"] = "memory:MEMORY.md"
             auto.append(n)
         else:
             project.append(n)
@@ -290,14 +307,14 @@ def layer_memory() -> dict:
     for lst in (rules, project, auto, paths_rules):
         lst.sort(key=lambda n: -n["tokens"])
     return group("layer:memory", "메모리 파일", "layer", [
-        group("unit:rules", "규칙 (~/.agents/rules/common)", "unit", rules),
+        group("unit:rules", f"규칙 ({dir_label(rules, '~/.claude/rules')})", "unit", rules),
         group("unit:rules-paths", "규칙 (경로로 걸리는 것 — 지연)", "unit", paths_rules,
               unit_id="rule:paths",
               note="세션 시작에는 안 실린다 — /context 실측이 없어 파일 추정값이다"),
         group("unit:project-files", "프로젝트 CLAUDE.md·AGENTS.md", "unit", project,
               note="끄지 못한다 — 본문을 줄이는 수밖에 없다"),
         group("unit:auto-memory", "프로젝트 메모리 색인 MEMORY.md", "unit", auto,
-              unit_id="memory:MEMORY.md(sketches)"),
+              unit_id="memory:MEMORY.md"),
     ])
 
 
@@ -343,7 +360,8 @@ def layer_skills() -> dict:
     for lst in [personal, commands, builtin, *plugins.values()]:
         lst.sort(key=lambda n: -n["tokens"])
     units = [
-        group("unit:skills-personal", "개인 스킬 (~/.agents/skills)", "unit", personal,
+        group("unit:skills-personal", f"개인 스킬 ({dir_label(personal, '~/.claude/skills')})",
+              "unit", personal,
               unit_id="dir:skill"),
         group("unit:commands", "로컬 슬래시 명령 (~/.claude/commands)", "unit", commands,
               unit_id="dir:command"),
